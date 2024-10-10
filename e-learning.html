@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/lucide-static@0.16.29/font/lucide.min.css" rel="stylesheet">
+    <style>
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8 text-center text-[#f17375]">E-Learning Projects</h1>
+        <div id="projects-container"></div>
+    </div>
+
+    <script>
+        const projects = [
+            {
+                title: "Geography Matter",
+                client: "E2STEM Education",
+                tools: "Articulate Storyline, Canva",
+                duration: "1.5 month",
+                summary: "This is a three-week course designed to assist learning in identifying locations on the Cambodian Map, furthering the world map, and coordination identification with the help of memory palace strategies (Base-Below-Left-Downward).",
+                challenge: "According to the need analysis, the learners in Cambodian high schools struggle much in locating their destination. They were barely able to identify the west, east, south, and north direction on the map.",
+                result: "The survey after the implementation among 5 groups of K12 Learners revealed the increased engagement and how the quiz challenges them as if it is a Gamified challenge.",
+                image: "/placeholder.svg?height=300&width=400"
+            },
+            {
+                title: "Lectora 21",
+                client: "IDOL Academy (US Vocational Training School)",
+                tools: "Lectora, Camtasia, and Canva",
+                duration: "4 months",
+                summary: "This is an eight-module course designed to train Instructional designers and E-learning developers in developing interactive E-Learning materials starting from navigating basic features to implementing advanced functions (Interactivity, tracking user input, and publishing their first E-Learning course on the internet. layers and functions in designing their interactive courses.",
+                challenge: "The course modules consist of a real step-by-step example walkthrough to demonstrate to the learners how each module can be implemented to add interactivity and advanced functions within their development phases. The support resources for Lectora training is limited on the internet.",
+                result: "With consistent feedbacks stating that both the instructional-led training and E-learning are both engaging and easy to follow along.",
+                image: "/placeholder.svg?height=300&width=400"
+            },
+            {
+                title: "Math Digital Content",
+                client: "Good Neighbor Cambodia Organization",
+                tools: "Google Doc, Coding Framework, 40K LMS",
+                duration: "6 months",
+                summary: "GNC Math Digital Learning Content is designed to assist learners during their 3 stations of learning circle (Collaborative activities station, Teacher-led instruction, and Online instruction.). Digital content is built to assist learners during their Online Instruction station in which learners can practice what they have learned through interactive types of exercises (Multiple Choice, Drag and Drop, and Fill in the blank).",
+                challenge: "The digital contents need be designed in order of difficulty, scaffolded and construct on new knowledge. 6 new interactions developed mainly to support the learning experience especially in the context of Math.",
+                result: "The Web application was successfully launched and deployed offline on the Raspberry Pi which learners in the unreached area can access the quality digital math content.",
+                image: "/placeholder.svg?height=300&width=400"
+            }
+        ];
+
+        function createProjectCard(project, index) {
+            return `
+                <div class="w-full mb-8 overflow-hidden bg-white rounded-lg shadow-md">
+                    <div class="md:flex flex-col">
+                        <div class="w-full h-64 relative">
+                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-[#f17375] bg-opacity-70 flex items-center justify-center">
+                                <h3 class="text-3xl font-bold text-white text-center px-4">${project.title}</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <p class="flex items-center"><i class="lucide-users mr-2 text-[#f17375]"></i> <span class="font-semibold">Client:</span> ${project.client}</p>
+                                <p class="flex items-center"><i class="lucide-wrench mr-2 text-[#f17375]"></i> <span class="font-semibold">Tools:</span> ${project.tools}</p>
+                                <p class="flex items-center"><i class="lucide-clock mr-2 text-[#f17375]"></i> <span class="font-semibold">Duration:</span> ${project.duration}</p>
+                            </div>
+                            <div class="tabs">
+                                <div class="tab-list grid w-full grid-cols-3 mb-4">
+                                    <button class="tab-button bg-gray-200 text-gray-700 px-4 py-2 rounded-md font-semibold hover:bg-[#f17375] hover:text-white transition-colors" data-tab="summary-${index}">Summary</button>
+                                    <button class="tab-button bg-gray-200 text-gray-700 px-4 py-2 rounded-md font-semibold hover:bg-[#f17375] hover:text-white transition-colors" data-tab="challenge-${index}">Challenge</button>
+                                    <button class="tab-button bg-gray-200 text-gray-700 px-4 py-2 rounded-md font-semibold hover:bg-[#f17375] hover:text-white transition-colors" data-tab="result-${index}">Result</button>
+                                </div>
+                                <div class="tab-content active" id="summary-${index}">
+                                    <p class="flex items-start"><i class="lucide-file-text mr-2 mt-1 text-[#f17375]"></i> ${project.summary}</p>
+                                </div>
+                                <div class="tab-content" id="challenge-${index}">
+                                    <p class="flex items-start"><i class="lucide-alert-triangle mr-2 mt-1 text-[#f17375]"></i> ${project.challenge}</p>
+                                </div>
+                                <div class="tab-content" id="result-${index}">
+                                    <p class="flex items-start"><i class="lucide-check-circle mr-2 mt-1 text-[#f17375]"></i> ${project.result}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            projects.forEach((project, index) => {
+                container.innerHTML += createProjectCard(project, index);
+            });
+
+            // Add event listeners to tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    const tabContent = document.getElementById(tabId);
+                    const tabContainer = button.closest('.tabs');
+
+                    // Hide all tab contents in this container
+                    tabContainer.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+
+                    // Show the selected tab content
+                    tabContent.classList.add('active');
+
+                    // Update button styles
+                    tabContainer.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.classList.remove('bg-[#f17375]', 'text-white');
+                        btn.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    button.classList.remove('bg-gray-200', 'text-gray-700');
+                    button.classList.add('bg-[#f17375]', 'text-white');
+                });
+            });
+        }
+
+        renderProjects();
+    </script>
+</body>
+</html>
