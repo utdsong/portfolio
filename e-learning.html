@@ -6,6 +6,24 @@
     <title>E-Learning Projects</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/lucide-static@0.16.29/font/lucide.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#F48FB1',
+                        dark: '#333333',
+                        light: '#FFFFFF',
+                        accent: '#3F51B5',
+                    },
+                    fontFamily: {
+                        sans: ['Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <style>
         .tab-content {
             display: none;
@@ -33,7 +51,7 @@
         .project-image-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(241, 115, 117, 0.7);
+            background: rgba(63, 81, 181, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -51,18 +69,39 @@
         }
         .project-details i {
             grid-column: 1;
-            color: #f17375;
+            color: #4CAF50;
         }
         .project-details span {
             grid-column: 2;
         }
     </style>
 </head>
-<body class="min-h-screen bg-gray-100 text-gray-900">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold mb-8 text-center text-[#f17375]">E-Learning Projects</h1>
+<body class="min-h-screen bg-light text-dark font-sans">
+    <header class="bg-dark text-light py-2 px-4">
+        <div class="container mx-auto">
+            <p class="text-center">✨ Welcome to My Instructional Design Portfolio ✨</p>
+        </div>
+    </header>
+    <nav class="bg-light shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary">My Portfolio</a>
+            <div class="space-x-4">
+                <a href="#" class="text-dark hover:text-primary">Projects</a>
+                <a href="#" class="text-dark hover:text-primary">About</a>
+                <a href="#" class="text-dark hover:text-primary">Contact</a>
+                <a href="#" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">Hire Me</a>
+            </div>
+        </div>
+    </nav>
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8 text-center text-accent">E-Learning Projects</h1>
         <div id="projects-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
-    </div>
+    </main>
+    <footer class="bg-dark text-light py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         const projects = [
@@ -94,7 +133,7 @@
                 summary: "GNC Math Digital Learning Content is designed to assist learners during their 3 stations of learning circle (Collaborative activities station, Teacher-led instruction, and Online instruction.). Digital content is built to assist learners during their Online Instruction station in which learners can practice what they have learned through interactive types of exercises (Multiple Choice, Drag and Drop, and Fill in the blank).",
                 challenge: "The digital contents need be designed in order of difficulty, scaffolded and construct on new knowledge. 6 new interactions developed mainly to support the learning experience especially in the context of Math.",
                 result: "The Web application was successfully launched and deployed offline on the Raspberry Pi which learners in the unreached area can access the quality digital math content.",
-                image: "/placeholder.svg?height=300&width=400"
+                image: "img/gnc.png?height=300&width=400"
             }
         ];
 
@@ -118,18 +157,18 @@
                         </div>
                         <div class="tabs">
                             <div class="tab-list grid w-full grid-cols-3 mb-4">
-                                <button class="tab-button bg-gray-200 text-gray-700 px-4 py-2 rounded-md font-semibold hover:bg-[#f17375] hover:text-white transition-colors" data-tab="summary-${index}">Summary</button>
-                                <button class="tab-button bg-gray-200 text-gray-700 px-4 py-2 rounded-md font-semibold hover:bg-[#f17375] hover:text-white transition-colors" data-tab="challenge-${index}">Challenge</button>
-                                <button class="tab-button bg-gray-200 text-gray-700 px-4 py-2 rounded-md font-semibold hover:bg-[#f17375] hover:text-white transition-colors" data-tab="result-${index}">Result</button>
+                                <button class="tab-button bg-gray-200 text-dark px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="summary-${index}">Summary</button>
+                                <button class="tab-button bg-gray-200 text-dark px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="challenge-${index}">Challenge</button>
+                                <button class="tab-button bg-gray-200 text-dark px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="result-${index}">Result</button>
                             </div>
                             <div class="tab-content active" id="summary-${index}">
-                                <p class="flex items-start"><i class="lucide-file-text mr-2 mt-1 text-[#f17375]"></i> ${project.summary}</p>
+                                <p class="flex items-start"><i class="lucide-file-text mr-2 mt-1 text-primary"></i> ${project.summary}</p>
                             </div>
                             <div class="tab-content" id="challenge-${index}">
-                                <p class="flex items-start"><i class="lucide-alert-triangle mr-2 mt-1 text-[#f17375]"></i> ${project.challenge}</p>
+                                <p class="flex items-start"><i class="lucide-alert-triangle mr-2 mt-1 text-primary"></i> ${project.challenge}</p>
                             </div>
                             <div class="tab-content" id="result-${index}">
-                                <p class="flex items-start"><i class="lucide-check-circle mr-2 mt-1 text-[#f17375]"></i> ${project.result}</p>
+                                <p class="flex items-start"><i class="lucide-check-circle mr-2 mt-1 text-primary"></i> ${project.result}</p>
                             </div>
                         </div>
                     </div>
@@ -160,11 +199,11 @@
 
                     // Update button styles
                     tabContainer.querySelectorAll('.tab-button').forEach(btn => {
-                        btn.classList.remove('bg-[#f17375]', 'text-white');
-                        btn.classList.add('bg-gray-200', 'text-gray-700');
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-gray-200', 'text-dark');
                     });
-                    button.classList.remove('bg-gray-200', 'text-gray-700');
-                    button.classList.add('bg-[#f17375]', 'text-white');
+                    button.classList.remove('bg-gray-200', 'text-dark');
+                    button.classList.add('bg-primary', 'text-white');
                 });
             });
         }
