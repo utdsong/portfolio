@@ -1,40 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Portfolio</title>
+    <title>Sereyutdam Song - E-Learning Specialist Portfolio</title>
     <link rel="icon" href="img/profile.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sereyutdam Song - Instructional Design & E-Learning Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#F48FB1',
+                        dark: '#333333',
+                        light: '#FFFFFF',
+                        accent: '#4A5568',
+                    },
+                },
+            },
+        }
+    </script>
     <style>
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeInUp {
             animation: fadeInUp 0.5s ease-out;
         }
     </style>
 </head>
-<body class="min-h-screen bg-white text-gray-900">
-    <!-- Hero Section -->
-    <section class="h-screen flex items-center justify-center bg-[#56638a] text-white">
-        <div class="text-center">
-            <img src="img/profile.png?height=500&width=500" alt="Sereyutdam Song" class="rounded-full w-48 h-48 object-cover mx-auto mb-8">
-            <h1 class="text-5xl font-bold mb-4 animate-fadeInUp">Sereyutdam Song</h1>
-            <p class="text-2xl mb-8 animate-fadeInUp" style="animation-delay: 0.2s;">E-Learning Specialist & Instructional Designer</p>
-            <div class="animate-fadeInUp" style="animation-delay: 0.4s;">
-                <button class="bg-white text-[#f17375] px-6 py-3 rounded-full font-semibold text-lg hover:bg-opacity-90 transition duration-300" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
-                    Learn More <i data-lucide="chevron-down" class="inline ml-2"></i>
+<body class="min-h-screen bg-light text-dark">
+    <!-- Top Banner -->
+    <div class="bg-dark text-light text-center py-2">
+        <p class="text-sm">✨ Welcome to My E-Learning Portfolio ✨</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-light shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="https://utdsong.github.io/utdam/portfolio.html" class="text-xl md:text-2xl font-bold text-dark">
+                    Sereyutdam Song
+                </a>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="#about" class="text-dark hover:text-primary">About</a>
+                    <a href="#portfolio" class="text-dark hover:text-primary">Portfolio</a>
+                    <a href="#contact" class="text-dark hover:text-primary">Contact</a>
+                    <a href="#" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                        Hire Me
+                    </a>
+                </div>
+                <button 
+                    class="md:hidden text-dark"
+                    id="menu-toggle"
+                >
+                    <i data-lucide="menu"></i>
                 </button>
+            </div>
+            <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
+                <a href="#about" class="block text-dark hover:text-primary">About</a>
+                <a href="#portfolio" class="block text-dark hover:text-primary">Portfolio</a>
+                <a href="#contact" class="block text-dark hover:text-primary">Contact</a>
+                <a href="#" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
+                    Hire Me
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-10 md:py-20 bg-accent text-light">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
+                <div class="mb-6">
+                    <img 
+                        src="img/profile.png" 
+                        alt="Sereyutdam Song" 
+                        class="rounded-full w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover"
+                    >
+                </div>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 animate-fadeInUp">Sereyutdam Song</h1>
+                <p class="text-lg md:text-xl lg:text-2xl mb-4 md:mb-6 animate-fadeInUp" style="animation-delay: 0.2s;">
+                    E-Learning Specialist & Instructional Designer
+                </p>
+                <div class="animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <button 
+                        class="bg-primary text-white px-6 py-3 rounded-full font-semibold text-lg hover:bg-opacity-90 transition duration-300"
+                        onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})"
+                    >
+                        Learn More
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -42,14 +101,14 @@
     <!-- About Section -->
     <section id="about" class="py-20">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 text-center text-[#f17375]">About Me</h2> 
+            <h2 class="text-3xl font-bold mb-8 text-center text-primary">About Me</h2>
             <div class="flex flex-col md:flex-row items-center gap-8">
                 <div class="md:w-1/3">
-                    <img src="img/utdam.png?height=300&width=300" alt="Sereyutdam Song" class="rounded-full w-64 h-64 object-cover mx-auto">
+                    <img src="img/utdam.png" alt="Sereyutdam Song" class="rounded-full w-64 h-64 object-cover mx-auto">
                 </div>
                 <div class="md:w-2/3">
                     <p class="text-lg mb-4">
-                        I'm an experienced instructional designer and online development specialist with a passion for creating engaging and effective online learning experiences. With over 12 years in the educational field transitioning with a two-year experience in Instructional design, I've developed a diverse skills from conducting needs analysis, designing learning gaps, and prototype the e-learning solution.
+                        I'm an experienced e-learning specialist and instructional designer with a passion for creating engaging and effective online learning experiences. With over 8 years in the field, I've developed a keen understanding of adult learning principles and how to apply them in digital environments.
                     </p>
                     <p class="text-lg mb-4">
                         My expertise includes designing and developing interactive e-learning courses, managing learning management systems, and implementing gamification strategies to enhance learner engagement and retention.
@@ -63,65 +122,50 @@
     </section>
 
     <!-- What I Do Section -->
-    <section class="py-20 bg-gray-100">
+    <section class="py-20 bg-accent text-light">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center text-[#f17375]">What I Do!</h2>
+            <h2 class="text-3xl font-bold mb-12 text-center">What I Do!</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
-                    <h3 class="text-xl font-semibold mb-4">E-learning</h3>
-                    <img src="/placeholder.svg?height=100&width=100" alt="E-learning" class="w-full h-32 object-cover mb-4 rounded">
-                    <a href="https://utdsong.github.io/utdam/e-learning.html" target="_blank" class="bg-[#f17375] text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Learn More</a>
+                    <img src="/placeholder.svg?height=100&width=100" alt="E-learning" class="w-24 h-24 object-cover mb-4 rounded-full">
+                    <h3 class="text-xl font-semibold mb-4 text-dark">E-learning</h3>
+                    <a href="https://utdsong.github.io/utdam/e-learning.html" target="_blank" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Learn More</a>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
-                    <h3 class="text-xl font-semibold mb-4">Instructional-Led</h3>
-                    <img src="/placeholder.svg?height=100&width=100" alt="Instructional-Led" class="w-full h-32 object-cover mb-4 rounded">
-                    <a href="#instructional-led" class="bg-[#f17375] text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Learn More</a>
+                    <img src="/placeholder.svg?height=100&width=100" alt="Instructional-Led" class="w-24 h-24 object-cover mb-4 rounded-full">
+                    <h3 class="text-xl font-semibold mb-4 text-dark">Instructional-Led</h3>
+                    <a href="#instructional-led" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Learn More</a>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
-                    <h3 class="text-xl font-semibold mb-4">Job-Aids Infographic</h3>
-                    <img src="/placeholder.svg?height=100&width=100" alt="Job-Aids Infographic" class="w-full h-32 object-cover mb-4 rounded">
-                    <a href="#job-aids" class="bg-[#f17375] text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Learn More</a>
+                    <img src="/placeholder.svg?height=100&width=100" alt="Job-Aids Infographic" class="w-24 h-24 object-cover mb-4 rounded-full">
+                    <h3 class="text-xl font-semibold mb-4 text-dark">Job-Aids Infographic</h3>
+                    <a href="#job-aids" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Learn More</a>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
-                    <h3 class="text-xl font-semibold mb-4">Scripting & Storyboard</h3>
-                    <img src="/placeholder.svg?height=100&width=100" alt="Scripting & Storyboard" class="w-full h-32 object-cover mb-4 rounded">
-                    <a href="#scripting" class="bg-[#f17375] text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Learn More</a>
+                    <img src="/placeholder.svg?height=100&width=100" alt="Scripting & Storyboard" class="w-24 h-24 object-cover mb-4 rounded-full">
+                    <h3 class="text-xl font-semibold mb-4 text-dark">Scripting & Storyboard</h3>
+                    <a href="#scripting" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Testimonial Section -->
+    <div id="testimonial-carousel"></div>
+
     <!-- Portfolio Section -->
-    <section class="py-20">
+    <section id="portfolio" class="py-20">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 text-center text-[#f17375]">Portfolio</h2>
+            <h2 class="text-3xl font-bold mb-8 text-center text-primary">Portfolio</h2>
             <div class="flex justify-center space-x-4 mb-8" id="portfolio-filters"></div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-projects"></div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="py-20 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 text-center text-[#f17375]">Testimonials</h2>
-            <div class="relative w-full max-w-xl mx-auto" id="testimonial-carousel">
-                <div class="overflow-hidden">
-                    <div class="flex transition-transform duration-300 ease-in-out" id="testimonial-slider"></div>
-                </div>
-                <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md" id="prev-testimonial">
-                    <i data-lucide="chevron-left"></i>
-                </button>
-                <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md" id="next-testimonial">
-                    <i data-lucide="chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
-    <section class="py-20">
+    <section id="contact" class="py-20">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 text-center text-[#f17375]">Contact Me</h2>
+            <h2 class="text-3xl font-bold mb-8 text-center text-primary">Contact Me</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div>
                     <h3 class="text-xl font-semibold mb-4">Get in Touch</h3>
@@ -129,7 +173,7 @@
                     <div class="space-y-2">
                         <p class="flex items-center"><i data-lucide="mail" class="mr-2"></i> utdamsong777@gmail.com</p>
                         <p class="flex items-center"><i data-lucide="phone" class="mr-2"></i> (855) 77-735-356</p>
-                        <p class="flex items-center"><i data-lucide="linkedin" class="mr-2"></i> https://www.linkedin.com/in/sereyutdamsong/</p>
+                        <p class="flex items-center"><i data-lucide="linkedin" class="mr-2"></i> linkedin.com/in/sereyutdamsong/</p>
                         <p class="flex items-center"><i data-lucide="github" class="mr-2"></i> github.com/utdsong</p>
                     </div>
                 </div>
@@ -138,31 +182,93 @@
                     <input type="email" placeholder="Your Email" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
                     <input type="text" placeholder="Subject" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
                     <textarea placeholder="Your Message" required class="w-full px-3 py-2 border border-gray-300 rounded-md h-32"></textarea>
-                    <button type="submit" class="w-full bg-[#f17375] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0b5fff] transition duration-300">Send Message</button>
+                    <button type="submit" class="w-full bg-secondary text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-6 bg-[#f17375] text-white text-center">
+    <footer class="py-6 bg-dark text-light text-center">
         <p>&copy; 2024 Sereyutdam Song. All rights reserved.</p>
     </footer>
 
-    <script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+        // TestimonialCarousel Component
+        const TestimonialCarousel = () => {
+            const [currentIndex, setCurrentIndex] = React.useState(0);
+
+            const testimonials = [
+                { id: 1, name: "Solomon Song", role: "Energy Consultant", company: "Tech Corp", text: "The e-learning courses developed were engaging and effective. Our employee productivity increased significantly." },
+                { id: 2, name: "Tanya Beniquez", role: "Founder", company: "ETeach", text: "The instructional design was top-notch. The courses were not only informative but also interactive and enjoyable." },
+                { id: 3, name: "Anna Spear", role: "Supervisor", company: "IDOL", text: "The attention to detail in creating personalized learning paths was impressive. Our learners showed great improvement." },
+            ];
+
+            const nextTestimonial = () => {
+                setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+            };
+
+            const prevTestimonial = () => {
+                setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
+            };
+
+            return (
+                <section className="py-20 bg-accent text-light">
+                    <div className="container mx-auto px-4">
+                        <h2 className="text-3xl font-bold mb-8 text-center">Testimonials</h2>
+                        <div className="relative w-full max-w-2xl mx-auto">
+                            <div className="bg-white p-8 rounded-lg shadow-md text-dark">
+                                <div className="relative h-48 overflow-hidden">
+                                    {testimonials.map((testimonial, index) => (
+                                        <div
+                                            key={testimonial.id}
+                                            className={`absolute w-full transition-all duration-300 ease-in-out ${
+                                                index === currentIndex ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
+                                            }`}
+                                        >
+                                            <p className="mb-4 italic text-gray-700 text-center">&quot;{testimonial.text}&quot;</p>
+                                            <p className="font-semibold text-gray-900  text-center">{testimonial.name}</p>
+                                            <p className="text-sm text-gray-600 text-center">{testimonial.role}, {testimonial.company}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <button
+                                onClick={prevTestimonial}
+                                className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full shadow-md hover:bg-opacity-80 transition duration-300"
+                                aria-label="Previous testimonial"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button
+                                onClick={nextTestimonial}
+                                className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full shadow-md hover:bg-opacity-80 transition duration-300"
+                                aria-label="Next testimonial"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Render TestimonialCarousel
+        ReactDOM.render(<TestimonialCarousel />, document.getElementById('testimonial-carousel'));
+
         // Projects data
         const projects = [
-            { id: 1, title: "Lectora Basic Training", category: "e-learning", image: "img/lectora.png" },
-            { id: 2, title: "Digital Math Content", category: "e-learning", image: "img/gnc.png?height=200&width=300" },
-            { id: 3, title: "Geography Matters", category: "gamification", image: "img/geography.png?height=200&width=300" },
+            { id: 1, title: "Lectora Basic Training", category: "e-learning", image: "/placeholder.svg?height=200&width=300" },
+            { id: 2, title: "Digital Math Content", category: "e-learning", image: "/placeholder.svg?height=200&width=300" },
+            { id: 3, title: "Geography Matters", category: "gamification", image: "/placeholder.svg?height=200&width=300" },
             { id: 4, title: "Virtual Reality Anatomy 101", category: "vr", image: "/placeholder.svg?height=200&width=300" },
-        ];
-
-        // Testimonials data
-        const testimonials = [
-            { id: 1, name: "Solomon Song", role: "Enegy Consultant", company: "Tech Corp", text: "The e-learning courses developed were engaging and effective. Our employee productivity increased significantly." },
-            { id: 2, name: "Tanya Beniquez", role: "Founder", company: "ETeach", text: "The instructional design was top-notch. The courses were not only informative but also interactive and enjoyable." },
-            { id: 3, name: "Anna Spear", role: "Supervisor", company: "IDOL", text: "The attention to detail in creating personalized learning paths was impressive. Our learners showed great improvement." },
         ];
 
         // Render portfolio filters and projects
@@ -171,10 +277,11 @@
         let activeFilter = 'all';
 
         const filterButtons = ['all', 'e-learning', 'gamification', 'vr'];
+        
         filterButtons.forEach(filter => {
             const button = document.createElement('button');
             button.textContent = filter.charAt(0).toUpperCase() + filter.slice(1);
-            button.className = `px-4 py-2 rounded-md ${filter === 'all' ? 'bg-[#0b5fff] text-white' : 'bg-gray-200 text-gray-800'}`;
+            button.className = `px-4 py-2 rounded-md ${filter === 'all' ? 'bg-primary text-white' : 'bg-gray-200 text-gray-800'}`;
             button.onclick = () => filterProjects(filter);
             portfolioFilters.appendChild(button);
         });
@@ -184,7 +291,7 @@
             const buttons = portfolioFilters.getElementsByTagName('button');
             for (let btn of buttons) {
                 btn.className = btn.textContent.toLowerCase() === category
-                    ? 'px-4 py-2 rounded-md bg-[#0b5fff] text-white'
+                    ? 'px-4 py-2 rounded-md bg-primary text-white'
                     : 'px-4 py-2 rounded-md bg-gray-200 text-gray-800';
             }
             renderProjects();
@@ -211,44 +318,17 @@
 
         renderProjects();
 
-        // Render testimonials
-        const testimonialSlider = document.getElementById('testimonial-slider');
-        let currentTestimonial = 0;
-
-        function renderTestimonials() {
-            testimonialSlider.innerHTML = '';
-            testimonials.forEach(testimonial => {
-                const testimonialElement = document.createElement('div');
-                testimonialElement.className = 'w-full flex-shrink-0';
-                testimonialElement.innerHTML = `
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <p class="mb-4 italic">"${testimonial.text}"</p>
-                        <p class="font-semibold">${testimonial.name}</p>
-                        <p class="text-sm text-gray-600">${testimonial.role}, ${testimonial.company}</p>
-                    </div>
-                `;
-                testimonialSlider.appendChild(testimonialElement);
-            });
-        }
-
-        renderTestimonials();
-
-        document.getElementById('prev-testimonial').addEventListener('click', () => {
-            currentTestimonial =    (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-            testimonialSlider.style.transform = `translateX(-${currentTestimonial * 100}%)`;
-        });
-
-        document.getElementById('next-testimonial').addEventListener('click', () => {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            testimonialSlider.style.transform = `translateX(-${currentTestimonial * 100}%)`;
-        });
-
         // Handle contact form submission
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             alert('Thank you for your message. I will get back to you soon!');
             this.reset();
+        });
+
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
         });
 
         // Initialize Lucide icons
