@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Learning Projects</title>
+    <title>Sereyutdam Song - E-Learning Specialist Portfolio</title>
     <link rel="icon" href="img/profile2.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/lucide-static@0.16.29/font/lucide.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -16,16 +16,20 @@
                         secondary: '#F48FB1',
                         dark: '#333333',
                         light: '#FFFFFF',
-                        accent: '#3F51B5',
+                        accent: '#4A5568',
                     },
-                    fontFamily: {
-                        sans: ['Arial', 'sans-serif'],
-                    },
-                }
-            }
+                },
+            },
         }
     </script>
     <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out;
+        }
         .tab-content {
             display: none;
         }
@@ -75,27 +79,9 @@
         .project-details span {
             grid-column: 2;
         }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-        .dropdown-menu.open {
-            display: block;
-        }
-        @media (min-width: 768px) {
-            #menu-toggle {
-                display: none;
-            }
-        }
     </style>
 </head>
-<body class="min-h-screen bg-light text-dark font-sans">
+<body class="min-h-screen bg-light text-dark">
     <header class="bg-dark text-light py-2 px-4">
         <div class="container mx-auto">
             <p class="text-center text-sm">
@@ -105,27 +91,34 @@
             </p>
         </div>
     </header>
-    <nav class="bg-light shadow-md relative">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-dark">Sereyutdam Song</a>
-            <div class="hidden md:flex space-x-4 items-center">
-                <a href="#" class="text-dark hover:text-primary">About</a>
-                <a href="#" class="text-dark hover:text-primary">Portfolio</a>
-                <a href="#" class="text-dark hover:text-primary">Contact</a>
-                <a href="#" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">Hire Me</a>
+
+    <nav class="bg-light shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="https://utdsong.github.io/utdam/portfolio.html" class="text-xl md:text-2xl font-bold text-dark">
+                    Sereyutdam Song
+                </a>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="#about" class="text-dark hover:text-primary">About</a>
+                    <a href="#portfolio" class="text-dark hover:text-primary">Portfolio</a>
+                    <a href="#contact" class="text-dark hover:text-primary">Contact</a>
+                    <a href="#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                        Hire Me
+                    </a>
+                </div>
+                <button 
+                    class="md:hidden text-dark"
+                    id="menu-toggle"
+                    aria-label="Toggle menu"
+                >
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
             </div>
-            <button id="menu-toggle" class="text-dark md:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </div>
-        <div id="dropdown-menu" class="dropdown-menu md:hidden">
-            <div class="p-4 flex flex-col space-y-4">
-                <a href="#" class="text-dark hover:text-primary text-lg">About</a>
-                <a href="#" class="text-dark hover:text-primary text-lg">Portfolio</a>
-                <a href="#" class="text-dark hover:text-primary text-lg">Contact</a>
-                <a href="#" class="bg-secondary text-white px-4 py-2 rounded-full text-center text-lg font-semibold hover:bg-opacity-90 transition-colors mt-4">
+            <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
+                <a href="#about" class="block text-dark hover:text-primary">About</a>
+                <a href="#portfolio" class="block text-dark hover:text-primary">Portfolio</a>
+                <a href="#contact" class="block text-dark hover:text-primary">Contact</a>
+                <a href="#" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
                     Hire Me
                 </a>
             </div>
@@ -144,6 +137,9 @@
     </footer>
 
     <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
         const projects = [
             {
                 title: "Geography Matter",
@@ -179,7 +175,7 @@
 
         function createProjectCard(project, index) {
             return `
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden animate-fadeInUp">
                     <div class="project-image-container">
                         <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
                         <div class="project-image-overlay">
@@ -188,11 +184,11 @@
                     </div>
                     <div class="p-6">
                         <div class="project-details mb-4">
-                            <i class="lucide-users"></i>
+                            <i data-lucide="users"></i>
                             <span><strong>Client:</strong> ${project.client}</span>
-                            <i class="lucide-wrench"></i>
+                            <i data-lucide="wrench"></i>
                             <span><strong>Tools:</strong> ${project.tools}</span>
-                            <i class="lucide-clock"></i>
+                            <i data-lucide="clock"></i>
                             <span><strong>Duration:</strong> ${project.duration}</span>
                         </div>
                         <div class="tabs">
@@ -202,13 +198,13 @@
                                 <button class="tab-button bg-gray-200 text-dark px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="result-${index}">Result</button>
                             </div>
                             <div class="tab-content active" id="summary-${index}">
-                                <p class="flex items-start"><i class="lucide-file-text mr-2 mt-1 text-primary"></i> ${project.summary}</p>
+                                <p class="flex items-start"><i data-lucide="file-text" class="mr-2 mt-1 text-primary"></i> ${project.summary}</p>
                             </div>
                             <div class="tab-content" id="challenge-${index}">
-                                <p class="flex items-start"><i class="lucide-alert-triangle mr-2 mt-1 text-primary"></i> ${project.challenge}</p>
+                                <p class="flex items-start"><i data-lucide="alert-triangle" class="mr-2 mt-1 text-primary"></i> ${project.challenge}</p>
                             </div>
                             <div class="tab-content" id="result-${index}">
-                                <p class="flex items-start"><i class="lucide-check-circle mr-2 mt-1 text-primary"></i> ${project.result}</p>
+                                <p class="flex items-start"><i data-lucide="check-circle" class="mr-2 mt-1 text-primary"></i> ${project.result}</p>
                             </div>
                         </div>
                     </div>
@@ -246,22 +242,25 @@
                     button.classList.add('bg-primary', 'text-white');
                 });
             });
+
+            // Initialize Lucide icons for dynamically added content
+            lucide.createIcons();
         }
 
         renderProjects();
 
         // Mobile menu functionality
         const menuToggle = document.getElementById('menu-toggle');
-        const dropdownMenu = document.getElementById('dropdown-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
 
         menuToggle.addEventListener('click', () => {
-            dropdownMenu.classList.toggle('open');
+            mobileMenu.classList.toggle('hidden');
         });
 
-        // Close dropdown when clicking outside
+        // Close mobile menu when clicking outside
         document.addEventListener('click', (event) => {
-            if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                dropdownMenu.classList.remove('open');
+            if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
             }
         });
     </script>
