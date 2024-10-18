@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scripting & Storyboard</title>
+    <link rel="icon" href="img/profile2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#F48FB1',
+                        dark: '#333333',
+                        light: '#FFFFFF',
+                        accent: '#4A5568',
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-800 text-white">
+    <!-- Welcome banner -->
+    <div class="bg-black py-2 text-center text-sm">
+        <span role="img" aria-label="star">✨</span> Welcome to My Instructional Design and E-learning Development Portfolio <span role="img" aria-label="star">✨</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="https://utdsong.github.io/utdam/portfolio.html" class="text-2xl font-bold">Sereyutdam Song</a>
+            <div class="hidden md:flex space-x-4 items-center">
+                <a href="/about" class="hover:text-green-400 transition-colors">About</a>
+                <a href="/portfolio" class="hover:text-green-400 transition-colors">Portfolio</a>
+                <a href="/contact" class="hover:text-green-400 transition-colors">Contact</a>
+                <a href="#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                    Hire Me
+                </a>
+            </div>
+            <button 
+                class="md:hidden text-white"
+                id="menu-toggle"
+                aria-label="Toggle menu"
+            >
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="md:hidden bg-gray-800 p-4 hidden" id="mobile-menu">
+        <a href="/about" class="block py-2 hover:text-green-400 transition-colors">About</a>
+        <a href="/portfolio" class="block py-2 hover:text-green-400 transition-colors">Portfolio</a>
+        <a href="/contact" class="block py-2 hover:text-green-400 transition-colors">Contact</a>
+        <a href="#contact" class="block mt-4 bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
+            Hire Me
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="container mx-auto px-4 py-16">
+        <div class="max-w-5xl mx-auto bg-gray-700 p-8 rounded-lg border-4 border-green-500 animate-fadeInUp">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="img/scripting-storyboard.png" alt="Scripting & Storyboard" class="w-full h-auto object-cover rounded-lg">
+                </div>
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <div class="relative inline-block w-full text-center">
+                        <div class="absolute inset-0 bg-green-500 opacity-75 rounded"></div>
+                        <h1 class="relative z-10 text-4xl font-bold mb-4 py-2 px-4 inline-block">Scripting & Storyboard</h1>
+                    </div>
+                    <p class="text-xl mb-8 mt-4">
+                        Expert scripting and storyboarding services for e-learning courses. We create engaging narratives and visual layouts that bring your educational content to life, ensuring an immersive and effective learning experience.
+                    </p>
+                    <div class="w-full text-center mt-8">
+                        <button class="bg-green-500 hover:bg-[#ffc000] text-white text-lg px-8 py-3 rounded">
+                            View Sample
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
