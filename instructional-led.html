@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectora Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-800 text-white">
+    <!-- Welcome banner -->
+    <div class="bg-black py-2 text-center text-sm">
+        <span role="img" aria-label="star">✨</span> Welcome to My Instructional Design and E-learning Development Portfolio <span role="img" aria-label="star">✨</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">Sereyutdam Song</a>
+            <div class="hidden md:flex space-x-4 items-center">
+                <a href="/about" class="hover:text-green-400 transition-colors">About</a>
+                <a href="/portfolio" class="hover:text-green-400 transition-colors">Portfolio</a>
+                <a href="/contact" class="hover:text-green-400 transition-colors">Contact</a>
+                <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded">Hire Me</button>
+            </div>
+            <button class="md:hidden" id="mobile-menu-button">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="md:hidden bg-gray-800 p-4 hidden" id="mobile-menu">
+        <a href="/about" class="block py-2 hover:text-green-400 transition-colors">About</a>
+        <a href="/portfolio" class="block py-2 hover:text-green-400 transition-colors">Portfolio</a>
+        <a href="/contact" class="block py-2 hover:text-green-400 transition-colors">Contact</a>
+        <button class="w-full mt-4 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded">Hire Me</button>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="container mx-auto px-4 py-16">
+        <div class="max-w-5xl mx-auto bg-gray-700 p-8 rounded-lg border-4 border-green-500 animate-fadeInUp">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div class="w-full md:w-1/2">
+                    <img src="/placeholder.svg?height=300&width=400" alt="Lectora" class="w-full h-auto object-cover rounded-lg">
+                </div>
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <div class="relative inline-block w-full text-center">
+                        <div class="absolute inset-0 bg-green-500 opacity-75 rounded"></div>
+                        <h1 class="relative z-10 text-4xl font-bold mb-4 py-2 px-4 inline-block">Lectora</h1>
+                    </div>
+                    <p class="text-xl mb-8 mt-4">
+                        Instructional-led training designed to equip new Instructional designers with Lectora skills for creating engaging e-learning courses. Covers project setup, text formatting, Google font integration, responsive design, and table creation.
+                    </p>
+                    <div class="w-full text-center mt-8">
+                        <button class="bg-green-500 hover:bg-green-600 text-white text-lg px-8 py-3 rounded">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
