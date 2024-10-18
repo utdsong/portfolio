@@ -126,7 +126,7 @@
     </nav>
 
     <main class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold mb-8 text-center text-accent">E-Learning Projects</h1>
+        <h1 class="text-4xl font-bold mb-8 text-center text-dark">E-Learning Projects</h1>
         <div id="projects-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
     </main>
 
@@ -175,36 +175,40 @@
 
         function createProjectCard(project, index) {
             return `
-                <div class="bg-white rounded-lg shadow-md overflow-hidden animate-fadeInUp">
-                    <div class="project-image-container">
-                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
-                        <div class="project-image-overlay">
-                            <h3 class="text-3xl font-bold text-white text-center px-4">${project.title}</h3>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="project-details mb-4">
-                            <i data-lucide="users"></i>
-                            <span><strong>Client:</strong> ${project.client}</span>
-                            <i data-lucide="wrench"></i>
-                            <span><strong>Tools:</strong> ${project.tools}</span>
-                            <i data-lucide="clock"></i>
-                            <span><strong>Duration:</strong> ${project.duration}</span>
-                        </div>
-                        <div class="tabs">
-                            <div class="tab-list grid w-full grid-cols-3 mb-4">
-                                <button class="tab-button bg-gray-200 text-dark px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="summary-${index}">Summary</button>
-                                <button class="tab-button bg-gray-200 text-dark px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="challenge-${index}">Challenge</button>
-                                <button class="tab-button bg-gray-200 text-dark px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="result-${index}">Result</button>
+                <div class="rounded-lg overflow-hidden border-4 border-green-500 animate-fadeInUp">
+                    <div class="bg-gray-800 p-6">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                            <div class="project-image-container">
+                                <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                                <div class="project-image-overlay">
+                                    <h3 class="text-3xl font-bold text-white text-center px-4">${project.title}</h3>
+                                </div>
                             </div>
-                            <div class="tab-content active" id="summary-${index}">
-                                <p class="flex items-start"><i data-lucide="file-text" class="mr-2 mt-1 text-primary"></i> ${project.summary}</p>
-                            </div>
-                            <div class="tab-content" id="challenge-${index}">
-                                <p class="flex items-start"><i data-lucide="alert-triangle" class="mr-2 mt-1 text-primary"></i> ${project.challenge}</p>
-                            </div>
-                            <div class="tab-content" id="result-${index}">
-                                <p class="flex items-start"><i data-lucide="check-circle" class="mr-2 mt-1 text-primary"></i> ${project.result}</p>
+                            <div class="p-6">
+                                <div class="project-details mb-4">
+                                    <i data-lucide="users"></i>
+                                    <span><strong>Client:</strong> ${project.client}</span>
+                                    <i data-lucide="wrench"></i>
+                                    <span><strong>Tools:</strong> ${project.tools}</span>
+                                    <i data-lucide="clock"></i>
+                                    <span><strong>Duration:</strong> ${project.duration}</span>
+                                </div>
+                                <div class="tabs">
+                                    <div class="tab-list grid w-full grid-cols-3 mb-4">
+                                        <button class="tab-button bg-gray-200 text-dark px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="summary-${index}">Summary</button>
+                                        <button class="tab-button bg-gray-200 text-dark px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="challenge-${index}">Challenge</button>
+                                        <button class="tab-button bg-gray-200 text-dark px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="result-${index}">Result</button>
+                                    </div>
+                                    <div class="tab-content active" id="summary-${index}">
+                                        <p class="flex items-start"><i data-lucide="file-text" class="mr-2 mt-1 text-primary"></i> ${project.summary}</p>
+                                    </div>
+                                    <div class="tab-content" id="challenge-${index}">
+                                        <p class="flex items-start"><i data-lucide="alert-triangle" class="mr-2 mt-1 text-primary"></i> ${project.challenge}</p>
+                                    </div>
+                                    <div class="tab-content" id="result-${index}">
+                                        <p class="flex items-start"><i data-lucide="check-circle" class="mr-2 mt-1 text-primary"></i> ${project.result}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
