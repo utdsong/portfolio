@@ -36,70 +36,114 @@
         .animate-fadeInUp {
             animation: fadeInUp 0.5s ease-out;
         }
+        .project-image-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .project-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .project-image-container:hover img {
+            transform: scale(1.05);
+        }
+        .project-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(63, 81, 181, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .project-image-container:hover .project-image-overlay {
+            opacity: 1;
+        }
     </style>
 </head>
-<body class="min-h-screen bg-white-800 text-white">
+<body class="min-h-screen bg-light text-dark">
     <!-- Welcome banner -->
-    <div class="bg-black py-2 text-center text-sm">
-        <span role="img" aria-label="star">✨</span> Welcome to My Instructional Design and E-learning Development Portfolio <span role="img" aria-label="star">✨</span>
+    <div class="bg-dark text-light py-2 px-4">
+        <div class="container mx-auto">
+            <p class="text-center text-sm">
+                <span role="img" aria-label="star">✨</span> 
+                Welcome to My Instructional Design and E-learning Development Portfolio 
+                <span role="img" aria-label="star">✨</span>
+            </p>
+        </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-gray-900 p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="https://utdsong.github.io/utdam/portfolio.html" class="text-2xl font-bold">Sereyutdam Song</a>
-            <div class="hidden md:flex space-x-4 items-center">
-                <a href="/about" class="hover:text-green-400 transition-colors">About</a>
-                <a href="/portfolio" class="hover:text-green-400 transition-colors">Portfolio</a>
-                <a href="/contact" class="hover:text-green-400 transition-colors">Contact</a>
-                <a href="#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+    <nav class="bg-light shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="https://utdsong.github.io/utdam/portfolio.html" class="text-xl md:text-2xl font-bold text-dark">
+                    Sereyutdam Song
+                </a>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="#about" class="text-dark hover:text-primary">About</a>
+                    <a href="#portfolio" class="text-dark hover:text-primary">Portfolio</a>
+                    <a href="#contact" class="text-dark hover:text-primary">Contact</a>
+                    <a href="#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                        Hire Me
+                    </a>
+                </div>
+                <button 
+                    class="md:hidden text-dark"
+                    id="menu-toggle"
+                    aria-label="Toggle menu"
+                >
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
+                <a href="#about" class="block text-dark hover:text-primary">About</a>
+                <a href="#portfolio" class="block text-dark hover:text-primary">Portfolio</a>
+                <a href="#contact" class="block text-dark hover:text-primary">Contact</a>
+                <a href="#" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
                     Hire Me
                 </a>
             </div>
-            <button 
-                class="md:hidden text-white"
-                id="menu-toggle"
-                aria-label="Toggle menu"
-            >
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
         </div>
     </nav>
 
-    <!-- Mobile menu -->
-    <div class="md:hidden bg-gray-800 p-4 hidden" id="mobile-menu">
-        <a href="/about" class="block py-2 hover:text-green-400 transition-colors">About</a>
-        <a href="/portfolio" class="block py-2 hover:text-green-400 transition-colors">Portfolio</a>
-        <a href="/contact" class="block py-2 hover:text-green-400 transition-colors">Contact</a>
-        <a href="#contact" class="block mt-4 bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
-            Hire Me
-        </a>
-    </div>
-
-    <!-- Hero Section -->
-    <div class="container mx-auto px-4 py-16">
-        <div class="max-w-5xl mx-auto bg-gray-700 p-8 rounded-lg border-4 border-green-500 animate-fadeInUp">
-            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
-                <div class="w-full md:w-1/2">
-                    <img src="img/scripting-storyboard.png" alt="Scripting & Storyboard" class="w-full h-auto object-cover rounded-lg">
-                </div>
-                <div class="w-full md:w-1/2 text-center md:text-left">
-                    <div class="relative inline-block w-full text-center">
-                        <div class="absolute inset-0 bg-green-500 opacity-75 rounded"></div>
-                        <h1 class="relative z-10 text-4xl font-bold mb-4 py-2 px-4 inline-block">Scripting & Storyboard</h1>
-                    </div>
-                    <p class="text-xl mb-8 mt-4">
-                        Expert scripting and storyboarding services for e-learning courses. We create engaging narratives and visual layouts that bring your educational content to life, ensuring an immersive and effective learning experience.
-                    </p>
-                    <div class="w-full text-center mt-8">
-                        <button class="bg-green-500 hover:bg-[#ffc000] text-white text-lg px-8 py-3 rounded">
-                            View Sample
-                        </button>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-gray-800 p-6 mb-8 rounded-lg">
+            <h1 class="text-4xl font-bold text-center text-white">Scripting & Storyboard</h1>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="rounded-lg overflow-hidden border-4 border-green-500 animate-fadeInUp">
+                <div class="bg-gray-800 p-6">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                        <div class="project-image-container">
+                            <img src="img/scripting-storyboard.png" alt="Scripting & Storyboard" class="w-full h-full object-cover">
+                            <div class="project-image-overlay">
+                                <h3 class="text-3xl font-bold text-white text-center px-4">Scripting & Storyboard</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-xl mb-8 text-gray-700">
+                                Expert scripting and storyboarding services for e-learning courses. We create engaging narratives and visual layouts that bring your educational content to life, ensuring an immersive and effective learning experience.
+                            </p>
+                            <div class="w-full text-center mt-8">
+                                <button class="bg-primary hover:bg-opacity-80 text-white text-lg px-8 py-3 rounded transition duration-300">
+                                    View Sample
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script>
         // Initialize Lucide icons
