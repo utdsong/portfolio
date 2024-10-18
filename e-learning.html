@@ -75,32 +75,70 @@
         .project-details span {
             grid-column: 2;
         }
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        @media (min-width: 768px) {
+            #menu-toggle {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-light text-dark font-sans">
     <header class="bg-dark text-light py-2 px-4">
         <div class="container mx-auto">
-            <p class="text-center">✨ Welcome to My Instructional Design and E-Learning Development Portfolio ✨</p>
+            <p class="text-center text-sm">
+                <span role="img" aria-label="star">✨</span> 
+                Welcome to My Instructional Design and E-learning Development Portfolio 
+                <span role="img" aria-label="star">✨</span>
+            </p>
         </div>
     </header>
     <nav class="bg-light shadow-md">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-primary">Sereyutdam Song</a>
-            <div class="space-x-4">
+            <a href="#" class="text-xl font-bold text-dark">Sereyutdam Song</a>
+            <div class="hidden md:flex space-x-4 items-center">
                 <a href="#" class="text-dark hover:text-primary">Projects</a>
                 <a href="#" class="text-dark hover:text-primary">About</a>
                 <a href="#" class="text-dark hover:text-primary">Contact</a>
                 <a href="#" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">Hire Me</a>
             </div>
+            <button id="menu-toggle" class="md:hidden text-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
         </div>
     </nav>
+    
+    <!-- Sidebar for mobile -->
+    <div id="sidebar" class="sidebar fixed top-0 left-0 h-full w-64 bg-light shadow-lg z-50 md:hidden">
+        <div class="p-4">
+            <button id="close-sidebar" class="mb-4 text-dark">
+                <i class="lucide-x"></i>
+            </button>
+            <div class="flex flex-col space-y-4">
+                <a href="#" class="text-dark hover:text-primary">Projects</a>
+                <a href="#" class="text-dark hover:text-primary">About</a>
+                <a href="#" class="text-dark hover:text-primary">Contact</a>
+                <a href="#" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">Hire Me</a>
+            </div>
+        </div>
+    </div>
+
     <main class="container mx-auto px-4 py-8">
         <h1 class="text-4xl font-bold mb-8 text-center text-accent">E-Learning Projects</h1>
         <div id="projects-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
     </main>
+
     <footer class="bg-dark text-light py-6">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
+            <p>&copy; 2024 Sereyutdam Song. All rights reserved.</p>
         </div>
     </footer>
 
@@ -210,6 +248,19 @@
         }
 
         renderProjects();
+
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeSidebar = document.getElementById('close-sidebar');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.add('open');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+        });
     </script>
 </body>
 </html>
