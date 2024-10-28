@@ -10,6 +10,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -51,6 +54,13 @@
         }
         .achievement-badge:hover {
             transform: scale(1.1);
+        }
+        .portfolio-item {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -130,14 +140,10 @@
                 </div>
                 <div class="md:w-2/3">
                     <p class="text-lg mb-4 opacity-100 about-text text-black">
-                        I'm an experienced instructional design and e-learning specialist with a passion for creating engaging and effective online learning experiences. With over 12 years in the educational field training to the field of instructional design and online development, I've developed a keen understanding of conducting gaps analysis, storyboarding bridging-gaps solution, and rapid-prototyping the E-learning experiences.
+                        I'm an experienced instructional design and e-learning specialist with a passion to bridge the learning experience gaps. With over 12 years in the educational field training to the field of instructional design and online development, I specialize in conducting gaps analysis, storyboarding bridging-gaps solution, and rapid-prototyping the E-learning experiences.
                     </p>
                     <p class="text-lg mb-4 opacity-100 about-text text-black">
-                        My expertise includes designing and developing interactive e-learning courses, managing learning management systems, and implementing gamification strategies to enhance learner engagement and retention.
-                    </p>
-                    <p class="text-lg mb-6 opacity-100 about-text text-black">
-                        I'm dedicated to staying at the forefront of educational technology and continuously improving my skills to deliver cutting-edge solutions for my clients.
-                    </p>
+                        The ultimate package I have to offer is to help my clients design and ​develop Simplified learning solutions and E-Learning Materias.</p>
                 </div>
             </div>
         </div>
@@ -178,57 +184,47 @@
     <!-- Achievements Section -->
     <section id="achievements" class="py-20 bg-accent overflow-hidden">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center text-primary">Achievements</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            <h2 class="text-3xl font-bold mb-12 text-center text-white">Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div class="flex flex-col items-center">
-                    <div class="relative w-32 h-32 mb-4">
-                        <img src="/placeholder.svg?height=150&width=150" alt="Storyline Skilled" class="achievement-badge">
+                    <div class="relative w-48 h-48 mb-4">
+                        <img src="img/IDOL badges/id.png?height=150&width=150" alt="Instructional Design" class="achievement-badge">
                     </div>
-                    <h3 class="text-lg font-semibold text-center text-dark">Storyline Skilled</h3>
                 </div>
                 <div class="flex flex-col items-center">
-                    <div class="relative w-32 h-32 mb-4">
-                        <img src="/placeholder.svg?height=150&width=150" alt="Instructional Design" class="achievement-badge">
+                    <div class="relative w-48 h-48 mb-4">
+                        <img src="img/IDOL badges/lxd.png?height=150&width=150" alt="Learning Experience Design" class="achievement-badge">
                     </div>
-                    <h3 class="text-lg font-semibold text-center text-dark">Instructional Design</h3>
                 </div>
                 <div class="flex flex-col items-center">
-                    <div class="relative w-32 h-32 mb-4">
-                        <img src="/placeholder.svg?height=150&width=150" alt="Canva Skilled" class="achievement-badge">
+                    <div class="relative w-48 h-48 mb-4">
+                        <img src="img/IDOL badges/ilt.png?height=150&width=150" alt="Instructor-Led Training" class="achievement-badge">
                     </div>
-                    <h3 class="text-lg font-semibold text-center text-dark">Canva Skilled</h3>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center">
+                    <div class="relative w-48 h-48 mb-4">
+                        <img src="img/IDOL badges/storyline.png?height=150&width=150" alt="Storyline" class="achievement-badge">
+                    </div>
                 </div>
                 <div class="flex flex-col items-center">
-                    <div class="relative w-32 h-32 mb-4">
-                        <img src="/placeholder.svg?height=150&width=150" alt="Google Project Management" class="achievement-badge">
+                    <div class="relative w-48 h-48 mb-4">
+                        <img src="img/IDOL badges/genially.png?height=150&width=150" alt="Genially" class="achievement-badge">
                     </div>
-                    <h3 class="text-lg font-semibold text-center text-dark">Google Project Management</h3>
                 </div>
                 <div class="flex flex-col items-center">
-                    <div class="relative w-32 h-32 mb-4">
-                        <img src="/placeholder.svg?height=150&width=150" alt="Achievement 5" class="achievement-badge">
+                    <div class="relative w-48 h-48 mb-4">
+                        <img src="img/IDOL badges/vyond.png?height=150&width=150" alt="Vyond" class="achievement-badge">
                     </div>
-                    <h3 class="text-lg font-semibold text-center text-dark">Achievement 5</h3>
+                
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="relative w-32 h-32 mb-4">
-                        <img src="/placeholder.svg?height=150&width=150" alt="Achievement 6" class="achievement-badge">
-                    </div>
-                    <h3 class="text-lg font-semibold text-center text-dark">Achievement 6</h3>
-                </div>
-            
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 text-center text-primary">Portfolio</h2>
-            <div class="flex justify-center space-x-4 mb-8" id="portfolio-filters"></div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-projects"></div>
-        </div>
-    </section>
+    <div id="portfolio-section"></div>
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 overflow-hidden">
@@ -241,7 +237,7 @@
                     <div class="space-y-2">
                         <p class="flex items-center"><i data-lucide="mail" class="mr-2"></i>
                             <a href="mailto:utdamsong777@gmail.com" class="hover:text-primary transition duration-300">
-                                <span class="__cf_email__" data-cfemail="3b5e5f4f4a465844454c1c1c1c7b4c464a424705484446">[email&#160;protected]</span>
+                                utdamsong777@gmail.com
                             </a>
                         </p>
                         <p class="flex items-center"><i data-lucide="phone" class="mr-2"></i> (855) 77-735-356</p>
@@ -263,12 +259,6 @@
         </div>
     </section>
 
-    <!-- Footer (unchanged)   -->
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
     <script type="text/babel">
         // TestimonialCarousel Component
         const TestimonialCarousel = () => {
@@ -333,19 +323,72 @@
             );
         };
 
+        // Portfolio Section Component
+        const PortfolioSection = () => {
+            const [filter, setFilter] = React.useState('all');
+
+            const projects = [
+                { id: 1, title: "Lectora Basic Training", category: "e-learning", image: "img/lectora.png" },
+                { id: 2, title: "Digital Math Content", category: "e-learning", image: "img/imageplaceholder.png" },
+                { id: 3, title: "Geography Matters", category: "gamification", image: "img/geography.png" },
+                { id: 4, title: "Virtual Reality Anatomy 101", category: "vr", image: "img/vrroom.png" },
+            ];
+
+            const categories = ['all', ...new Set(projects.map(project => project.category))];
+
+            const filteredProjects = filter === 'all' 
+                ? projects 
+                : projects.filter(project => project.category === filter);
+
+            return (
+                <section className="py-16 bg-white">
+                    <div className="container mx-auto px-4">
+                        <h2 className="text-4xl font-bold text-center text-green-500 mb-8">Portfolio</h2>
+                        <div className="flex justify-center space-x-4 mb-8">
+                            {categories.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => setFilter(category)}
+                                    className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                                        filter === category
+                                            ? 'bg-green-500 text-white'
+                                            : 'bg-gray-200 text-gray-700 hover:bg-green-500 hover:text-white'
+                                    }`}
+                                >
+                                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {filteredProjects.map((project) => (
+                                <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="w-full h-64 object-cover"
+                                    />
+                                    <div className="p-6">
+                                        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                                        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+                                            {project.category}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
         // Render TestimonialCarousel
         ReactDOM.render(<TestimonialCarousel />, document.getElementById('testimonial-carousel'));
 
-        // Projects data
-        const projects = [
-            { id: 1, title: "Lectora Basic Training", category: "e-learning", image: "img/lectora.png?height=200&width=300" },
-            { id: 2, title: "Digital Math Content", category: "e-learning", image: "img/imageplaceholder.png?height=200&width=300" },
-            { id: 3, title: "Geography Matters", category: "gamification", image: "img/geography.png?height=200&width=300" },
-            { id: 4, title: "Virtual Reality Anatomy 101", category: "vr", image: "img/vrroom.png?height=200&width=300" },
-        ];
+        // Render PortfolioSection
+        ReactDOM.render(<PortfolioSection />, document.getElementById('portfolio-section'));
+    </script>
 
-        // Render portfolio filters and projects (unchanged)
-
+    <script>
         // Handle contact form submission
         function sendEmail(event) {
             event.preventDefault();
@@ -374,7 +417,13 @@
             return false;
         }
 
-        // Mobile menu toggle (unchanged)
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
         // Initialize Lucide icons
         lucide.createIcons();
