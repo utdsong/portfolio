@@ -7,6 +7,10 @@
     <link rel="icon" href="img/profile2.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -30,16 +34,10 @@
         .animate-fadeInUp {
             animation: fadeInUp 0.5s ease-out;
         }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
         .project-image-container {
             position: relative;
             overflow: hidden;
-            padding-top: 50%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
         }
         .project-image-container img {
             position: absolute;
@@ -56,7 +54,7 @@
         .project-image-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(63, 81, 181, 0.7);
+            background: rgba(31, 41, 55, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,23 +64,16 @@
         .project-image-container:hover .project-image-overlay {
             opacity: 1;
         }
-        .project-details {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 0.5rem 1rem;
-            align-items: start;
+        .project-card {
+            transition: transform 0.3s ease-out;
         }
-        .project-details i {
-            grid-column: 1;
-            color: #4CAF50;
-        }
-        .project-details span {
-            grid-column: 2;
+        .project-card:hover {
+            transform: translateY(-5px);
         }
     </style>
 </head>
-<body class="min-h-screen bg-light text-dark">
-    <header class="bg-dark text-light py-2 px-4">
+<body class="min-h-screen bg-[#1f2937] text-white">
+    <header class="bg-gray-800 py-2 px-4">
         <div class="container mx-auto">
             <p class="text-center text-sm">
                 <span role="img" aria-label="star">✨</span> 
@@ -92,22 +83,22 @@
         </div>
     </header>
 
-    <nav class="bg-light shadow-md">
+    <nav class="bg-gray-800 shadow-md">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
-                <a href="https://utdsong.github.io/utdam/portfolio.html" class="text-xl md:text-2xl font-bold text-dark">
+                <a href="https://utdsong.github.io/utdam/portfolio.html" class="text-xl md:text-2xl font-bold text-white">
                     Sereyutdam Song
                 </a>
                 <div class="hidden md:flex space-x-4 items-center">
-                    <a href="#about" class="text-dark hover:text-primary">About</a>
-                    <a href="#portfolio" class="text-dark hover:text-primary">Portfolio</a>
-                    <a href="#contact" class="text-dark hover:text-primary">Contact</a>
+                    <a href="#about" class="text-white hover:text-primary">About</a>
+                    <a href="#portfolio" class="text-white hover:text-primary">Portfolio</a>
+                    <a href="#contact" class="text-white hover:text-primary">Contact</a>
                     <a href="#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
                         Hire Me
                     </a>
                 </div>
                 <button 
-                    class="md:hidden text-dark"
+                    class="md:hidden text-white"
                     id="menu-toggle"
                     aria-label="Toggle menu"
                 >
@@ -115,9 +106,9 @@
                 </button>
             </div>
             <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
-                <a href="#about" class="block text-dark hover:text-primary">About</a>
-                <a href="#portfolio" class="block text-dark hover:text-primary">Portfolio</a>
-                <a href="#contact" class="block text-dark hover:text-primary">Contact</a>
+                <a href="#about" class="block text-white hover:text-primary">About</a>
+                <a href="#portfolio" class="block text-white hover:text-primary">Portfolio</a>
+                <a href="#contact" class="block text-white hover:text-primary">Contact</a>
                 <a href="#" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
                     Hire Me
                 </a>
@@ -125,23 +116,15 @@
         </div>
     </nav>
 
-    <main class="container mx-auto px-4 py-8">
-        <div class="bg-gray-800 p-6 mb-8 rounded-lg">
-          <h1 class="text-4xl font-bold text-center text-white">E-Learning Projects</h1>
-        </div>
-        <div id="projects-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
-    </main>
+    <main id="e-learning-projects" class="container mx-auto px-4 py-8"></main>
 
-    <footer class="bg-dark text-light py-6">
+    <footer class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-4 text-center">
             <p>&copy; 2024 Sereyutdam Song. All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
+    <script type="text/babel">
         const projects = [
             {
                 title: "Geography Matter",
@@ -175,101 +158,73 @@
             }
         ];
 
-        function createProjectCard(project, index) {
-            return `
-                <div class="rounded-lg overflow-hidden border-4 border-green-500 animate-fadeInUp">
-                    <div class="bg-gray-800 p-4">
-                        <div class="bg-white rounded-lg overflow-hidden shadow-md">
-                            <div class="project-image-container" style="padding-top: 50%;">
-                                <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
-                                <div class="project-image-overlay">
-                                    <h3 class="text-3xl font-bold text-white text-center px-4">${project.title}</h3>
-                                </div>
-                            </div>
-                            <div class="p-4">
-                                <div class="project-details mb-3 text-sm">
-                                    <i data-lucide="users"></i>
-                                    <span><strong>Client:</strong> ${project.client}</span>
-                                    <i data-lucide="wrench"></i>
-                                    <span><strong>Tools:</strong> ${project.tools}</span>
-                                    <i data-lucide="clock"></i>
-                                    <span><strong>Duration:</strong> ${project.duration}</span>
-                                </div>
-                                <div class="tabs">
-                                    <div class="tab-list grid w-full grid-cols-3 mb-3">
-                                        <button class="tab-button bg-gray-200 text-dark px-3 py-1 rounded-md text-sm font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="summary-${index}">Summary</button>
-                                        <button class="tab-button bg-gray-200 text-dark px-3 py-1 rounded-md text-sm font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="challenge-${index}">Challenge</button>
-                                        <button class="tab-button bg-gray-200 text-dark px-3 py-1 rounded-md text-sm font-semibold hover:bg-primary hover:text-white transition-colors" data-tab="result-${index}">Result</button>
-                                    </div>
-                                    <div class="tab-content active text-sm" id="summary-${index}">
-                                        <p class="flex items-start"><i data-lucide="file-text" class="mr-2 mt-1 text-primary"></i> ${project.summary}</p>
-                                        <div class="mt-3">
-                                            <button class="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-opacity-80 transition-colors">
-                                                View Project
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="tab-content text-sm" id="challenge-${index}">
-                                        <p class="flex items-start"><i data-lucide="alert-triangle" class="mr-2 mt-1 text-primary"></i> ${project.challenge}</p>
-                                        <div class="mt-3">
-                                            <button class="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-opacity-80 transition-colors">
-                                                View Project
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="tab-content text-sm" id="result-${index}">
-                                        <p class="flex items-start"><i data-lucide="check-circle" class="mr-2 mt-1 text-primary"></i> ${project.result}</p>
-                                        <div class="mt-3">
-                                            <button class="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-opacity-80 transition-colors">
-                                                View Project
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        function ProjectCard({ project }) {
+            const [activeTab, setActiveTab] = React.useState('summary');
+
+            return (
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
+                    <div className="relative overflow-hidden pb-[56.25%]">
+                        <img src={project.image} alt={project.title} className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+                        <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <h3 className="text-2xl md:text-3xl font-bold text-white text-center px-4">{project.title}</h3>
+                        </div>
+                    </div>
+                    <div className="p-4 flex flex-col h-full">
+                        <div className="mb-3 text-sm grid grid-cols-[auto,1fr] gap-x-2 gap-y-1 items-start text-gray-700">
+                            <span className="font-semibold">Client:</span>
+                            <span>{project.client}</span>
+                            <span className="font-semibold">Tools:</span>
+                            <span>{project.tools}</span>
+                            <span className="font-semibold">Duration:</span>
+                            <span>{project.duration}</span>
+                        </div>
+                        <div className="flex mb-2">
+                            {['summary', 'challenge', 'result'].map((tab) => (
+                                <button
+                                    key={tab}
+                                    onClick={() => setActiveTab(tab)}
+                                    className={`flex-1 py-2 px-2 md:px-4 text-xs md:text-sm font-medium rounded-t-lg transition-colors duration-200 ${
+                                        activeTab === tab
+                                            ? 'bg-green-500 text-white'
+                                            : 'bg-gray-200 text-gray-700 hover:bg-green-100'
+                                    }`}
+                                >
+                                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="bg-gray-100 p-3 rounded-b-lg flex-grow">
+                            <p className="text-xs md:text-sm text-gray-700">{project[activeTab]}</p>
+                        </div>
+                        <div className="mt-4 flex justify-center">
+                            <button className="w-full sm:w-auto px-4 md:px-6 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base font-semibold rounded-full transition-colors duration-300">
+                                View Project
+                            </button>
                         </div>
                     </div>
                 </div>
-            `;
+            );
         }
 
-        function renderProjects() {
-            const container = document.getElementById('projects-container');
-            projects.forEach((project, index) => {
-                container.innerHTML += createProjectCard(project, index);
-            });
-
-            // Add event listeners to tab buttons
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-                    const tabContent = document.getElementById(tabId);
-                    const tabContainer = button.closest('.tabs');
-
-                    // Hide all tab contents in this container
-                    tabContainer.querySelectorAll('.tab-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-
-                    // Show the selected tab content
-                    tabContent.classList.add('active');
-
-                    // Update button styles
-                    tabContainer.querySelectorAll('.tab-button').forEach(btn => {
-                        btn.classList.remove('bg-primary', 'text-white');
-                        btn.classList.add('bg-gray-200', 'text-dark');
-                    });
-                    button.classList.remove('bg-gray-200', 'text-dark');
-                    button.classList.add('bg-primary', 'text-white');
-                });
-            });
-
-            // Initialize Lucide icons for dynamically added content
-            lucide.createIcons();
+        function ELearningProjects() {
+            return (
+                <div className="container mx-auto px-4 py-8">
+                    <div className="bg-gray-800 p-6 mb-8 rounded-lg">
+                        <h1 className="text-3xl md:text-4xl font-bold text-center text-white">E-Learning Projects</h1>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {projects.map((project, index) => (
+                            <ProjectCard key={index} project={project} />
+                        ))}
+                    </div>
+                </div>
+            );
         }
 
-        renderProjects();
+        ReactDOM.render(<ELearningProjects />, document.getElementById('e-learning-projects'));
+    </script>
 
+    <script>
         // Mobile menu functionality
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -283,6 +238,17 @@
             if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
                 mobileMenu.classList.add('hidden');
             }
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Initialize VanillaTilt
+        VanillaTilt.init(document.querySelectorAll(".project-card"), {
+            max: 5,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5
         });
     </script>
 </body>
