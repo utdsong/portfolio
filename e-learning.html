@@ -90,10 +90,10 @@
                     Sereyutdam Song
                 </a>
                 <div class="hidden md:flex space-x-4 items-center">
-                    <a href="#about" class="text-white hover:text-primary">About</a>
-                    <a href="#portfolio" class="text-white hover:text-primary">Portfolio</a>
-                    <a href="#contact" class="text-white hover:text-primary">Contact</a>
-                    <a href="#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#about" class="text-white hover:text-primary">About</a>
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#what-i-do" class="text-white hover:text-primary">Portfolio</a>
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="text-white hover:text-primary">Contact</a>
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
                         Hire Me
                     </a>
                 </div>
@@ -106,10 +106,10 @@
                 </button>
             </div>
             <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
-                <a href="#about" class="block text-white hover:text-primary">About</a>
-                <a href="#portfolio" class="block text-white hover:text-primary">Portfolio</a>
-                <a href="#contact" class="block text-white hover:text-primary">Contact</a>
-                <a href="#" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
+                <a href="https://utdsong.github.io/utdam/portfolio.html#about" class="block text-white hover:text-primary">About</a>
+                <a href="https://utdsong.github.io/utdam/portfolio.html#what-i-do" class="block text-white hover:text-primary">Portfolio</a>
+                <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="block text-white hover:text-primary">Contact</a>
+                <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
                     Hire Me
                 </a>
             </div>
@@ -131,7 +131,10 @@
                 client: "E2STEM Education",
                 tools: "Articulate Storyline, Canva",
                 duration: "1.5 month",
-                summary: "This is a three-week course designed to assist learning in identifying locations on the Cambodian Map, furthering the world map, and coordination identification with the help of memory palace strategies (Base-Below-Left-Downward).\n\nLogin Credentials:\nEmail: utdamsong@gmail.com\nPassword: Geography2022",
+                summary: "This is a three-week course designed to assist learning in identifying locations on the Cambodian Map, furthering the world map, and coordination identification with the help of memory palace strategies (Base-Below-Left-Downward).\n\n" + 
+                        "Login Credentials:\n" +
+                        "Email: utdamsong@gmail.com\n" +
+                        "Password: Geography2022",
                 challenge: "According to the need analysis, the learners in Cambodian high schools struggle much in locating their destination. They were barely able to identify the west, east, south, and north direction on the map.",
                 result: "The survey after the implementation among 5 groups of K12 Learners revealed the increased engagement and how the quiz challenges them as if it is a Gamified challenge.",
                 image: "img/geography.png?height=300&width=400"
@@ -205,7 +208,7 @@
                             ))}
                         </div>
                         <div className="bg-gray-100 p-3 rounded-b-lg flex-grow">
-                            <p className="text-xs md:text-sm text-gray-700">{project[activeTab]}</p>
+                            <p className="text-xs md:text-sm text-gray-700 whitespace-pre-line">{project[activeTab]}</p>
                         </div>
                         <div className="mt-4 flex justify-center">
                             <button 
@@ -264,6 +267,7 @@
         // Close mobile menu when clicking outside
         document.addEventListener('click', (event) => {
             if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                
                 mobileMenu.classList.add('hidden');
             }
         });
