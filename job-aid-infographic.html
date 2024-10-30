@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job-aid Infographic</title>
+    <title>Job Aid Infographic</title>
     <link rel="icon" href="img/profile2.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -24,14 +28,8 @@
     </script>
     <style>
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeInUp {
             animation: fadeInUp 0.5s ease-out;
@@ -56,7 +54,7 @@
         .project-image-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(63, 81, 181, 0.7);
+            background: rgba(31, 41, 55, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,11 +64,16 @@
         .project-image-container:hover .project-image-overlay {
             opacity: 1;
         }
+        .project-card {
+            transition: transform 0.3s ease-out;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
-<body class="min-h-screen bg-light text-dark">
-    <!-- Welcome banner -->
-    <div class="bg-dark text-light py-2 px-4">
+<body class="min-h-screen bg-[#1f2937] text-white">
+    <header class="bg-gray-800 py-2 px-4">
         <div class="container mx-auto">
             <p class="text-center text-sm">
                 <span role="img" aria-label="star">✨</span> 
@@ -78,25 +81,24 @@
                 <span role="img" aria-label="star">✨</span>
             </p>
         </div>
-    </div>
+    </header>
 
-    <!-- Navigation -->
-    <nav class="bg-light shadow-md">
+    <nav class="bg-gray-800 shadow-md">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
-                <a href="https://utdsong.github.io/utdam/portfolio.html" class="text-xl md:text-2xl font-bold text-dark">
+                <a href="https://utdsong.github.io/utdam/portfolio.html" class="text-xl md:text-2xl font-bold text-white">
                     Sereyutdam Song
                 </a>
                 <div class="hidden md:flex space-x-4 items-center">
-                    <a href="#about" class="text-dark hover:text-primary">About</a>
-                    <a href="#portfolio" class="text-dark hover:text-primary">Portfolio</a>
-                    <a href="#contact" class="text-dark hover:text-primary">Contact</a>
+                    <a href="#about" class="text-white hover:text-primary">About</a>
+                    <a href="#portfolio" class="text-white hover:text-primary">Portfolio</a>
+                    <a href="#contact" class="text-white hover:text-primary">Contact</a>
                     <a href="#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
                         Hire Me
                     </a>
                 </div>
                 <button 
-                    class="md:hidden text-dark"
+                    class="md:hidden text-white"
                     id="menu-toggle"
                     aria-label="Toggle menu"
                 >
@@ -104,9 +106,9 @@
                 </button>
             </div>
             <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
-                <a href="#about" class="block text-dark hover:text-primary">About</a>
-                <a href="#portfolio" class="block text-dark hover:text-primary">Portfolio</a>
-                <a href="#contact" class="block text-dark hover:text-primary">Contact</a>
+                <a href="#about" class="block text-white hover:text-primary">About</a>
+                <a href="#portfolio" class="block text-white hover:text-primary">Portfolio</a>
+                <a href="#contact" class="block text-white hover:text-primary">Contact</a>
                 <a href="#" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
                     Hire Me
                 </a>
@@ -114,41 +116,58 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-        <div class="bg-gray-800 p-6 mb-8 rounded-lg">
-            <h1 class="text-4xl font-bold text-center text-white">Job Aid Infographic</h1>
+    <main id="infographic-content" class="container mx-auto px-4 py-8"></main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Sereyutdam Song. All rights reserved.</p>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="rounded-lg overflow-hidden border-4 border-green-500 animate-fadeInUp">
-                <div class="bg-gray-800 p-6">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md">
-                        <div class="project-image-container">
-                            <img src="img/infographic.png" alt="Job-aid Infographic" class="w-full h-full object-cover">
-                            <div class="project-image-overlay">
-                                <h3 class="text-3xl font-bold text-white text-center px-4">Job-aid Infographic</h3>
+    </footer>
+
+    <script type="text/babel">
+        function InfographicContent() {
+            return (
+                <div className="max-w-4xl mx-auto">
+                    <div className="bg-gray-800 p-6 mb-8 rounded-lg">
+                        <h1 className="text-3xl md:text-4xl font-bold text-center text-white">Job Aid Infographic</h1>
+                    </div>
+                    <div className="bg-white rounded-lg overflow-hidden shadow-lg project-card">
+                        <div className="grid lg:grid-cols-2 gap-0">
+                            <div className="project-image-container">
+                                <img 
+                                    src="img/jobaid.png" 
+                                    alt="Working with Texts in Lectora Infographic" 
+                                    className="absolute inset-0 w-full h-full object-cover bg-gray-100" 
+                                />
+                                <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center px-4">Job Aid Infographic</h3>
+                                </div>
                             </div>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-xl mb-8 text-gray-700">
-                                Visually appealing and informative job-aid infographics designed to enhance workplace performance. Our infographics provide quick reference guides, step-by-step instructions, and key information in an easily digestible format.
-                            </p>
-                            <div class="w-full text-center mt-8">
-                                <button class="bg-primary hover:bg-opacity-80 text-white text-lg px-8 py-3 rounded transition duration-300">
-                                    View Samples
-                                </button>
+                            <div className="p-6 lg:p-8 flex flex-col justify-center">
+                                <p className="text-gray-700 text-lg mb-6">
+                                    Visually appealing and informative job-aid infographics designed to enhance workplace performance. Our infographics provide quick reference guides, step-by-step instructions, and key information in an easily digestible format.
+                                </p>
+                                <div className="flex justify-center">
+                                    <a 
+                                        href="https://www.canva.com/design/DAF_j-Auom8/W6Wz8pvvn206DzLGEWib9w/view?utm_content=DAF_j-Auom8&utm_campaign=designshare&utm_medium=link&utm_source=editor"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-colors duration-300"
+                                    >
+                                        View Sample
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </main>
+            );
+        }
+
+        ReactDOM.render(<InfographicContent />, document.getElementById('infographic-content'));
+    </script>
 
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
         // Mobile menu functionality
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -162,6 +181,17 @@
             if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
                 mobileMenu.classList.add('hidden');
             }
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Initialize VanillaTilt
+        VanillaTilt.init(document.querySelectorAll(".project-card"), {
+            max: 5,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5
         });
     </script>
 </body>
