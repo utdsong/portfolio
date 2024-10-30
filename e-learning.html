@@ -131,7 +131,7 @@
                 client: "E2STEM Education",
                 tools: "Articulate Storyline, Canva",
                 duration: "1.5 month",
-                summary: "This is a three-week course designed to assist learning in identifying locations on the Cambodian Map, furthering the world map, and coordination identification with the help of memory palace strategies (Base-Below-Left-Downward).",
+                summary: "This is a three-week course designed to assist learning in identifying locations on the Cambodian Map, furthering the world map, and coordination identification with the help of memory palace strategies (Base-Below-Left-Downward).\n\nLogin Credentials:\nEmail: utdamsong@gmail.com\nPassword: Geography2022",
                 challenge: "According to the need analysis, the learners in Cambodian high schools struggle much in locating their destination. They were barely able to identify the west, east, south, and north direction on the map.",
                 result: "The survey after the implementation among 5 groups of K12 Learners revealed the increased engagement and how the quiz challenges them as if it is a Gamified challenge.",
                 image: "img/geography.png?height=300&width=400"
@@ -160,6 +160,17 @@
 
         function ProjectCard({ project }) {
             const [activeTab, setActiveTab] = React.useState('summary');
+            const [showNDAPopup, setShowNDAPopup] = React.useState(false);
+
+            const handleViewProject = () => {
+                if (project.title === "Geography Matter") {
+                    window.location.href = "https://k12.instructure.com/login/canvas";
+                } else if (project.title === "Math Digital Content") {
+                    setShowNDAPopup(true);
+                } else if (project.title === "Lectora 21") {
+                    window.open("https://360.articulate.com/review/content/5011a91e-7a7b-44c3-b800-4c191f775353/review", "_blank");
+                }
+            };
 
             return (
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg project-card flex flex-col" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
@@ -197,10 +208,27 @@
                             <p className="text-xs md:text-sm text-gray-700">{project[activeTab]}</p>
                         </div>
                         <div className="mt-4 flex justify-center">
-                            <button className="w-full sm:w-auto px-4 md:px-6 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base font-semibold rounded-full transition-colors duration-300">
+                            <button 
+                                onClick={handleViewProject}
+                                className="w-full sm:w-auto px-4 md:px-6 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base font-semibold rounded-full transition-colors duration-300"
+                            >
                                 View Project
                             </button>
                         </div>
+                        {showNDAPopup && (
+                            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                                <div className="bg-white p-6 rounded-lg max-w-md">
+                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Access Restricted</h3>
+                                    <p className="text-gray-700 mb-4">Since this project is a non-disclosure agreement project, the course demo access will be unavailable.</p>
+                                    <button 
+                                        onClick={() => setShowNDAPopup(false)}
+                                        className="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition-colors duration-300"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             );
