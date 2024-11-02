@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sereyutdam Song - Video Projects</title>
+    <link rel="icon" href="img/profile2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#F48FB1',
+                        dark: '#333333',
+                        light: '#FFFFFF',
+                        accent: '#4A5568',
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .project-image-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .project-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .project-image-container:hover img {
+            transform: scale(1.05);
+        }
+        .project-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(31, 41, 55, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .project-image-container:hover .project-image-overlay {
+            opacity: 1;
+        }
+        .project-card {
+            transition: transform 0.3s ease-out;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .video-container {
+            width: 90%;
+            max-width: 1200px;
+            background-color: #1f2937;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .video-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#1f2937] text-white">
+    <header class="bg-gray-800 py-2 px-4">
+        <div class="container mx-auto">
+            <p class="text-center text-sm">
+                <span role="img" aria-label="star">✨</span> 
+                Welcome to My Instructional Design and E-learning Development Portfolio 
+                <span role="img" aria-label="star">✨</span>
+            </p>
+        </div>
+    </header>
+
+    <nav class="bg-gray-800 shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="./" class="text-xl md:text-2xl font-bold text-white">
+                    Sereyutdam Song
+                </a>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#about" class="text-white hover:text-primary">About</a>
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#what-i-do" class="text-white hover:text-primary">Portfolio</a>
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="text-white hover:text-primary">Contact</a>
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                        Hire Me
+                    </a>
+                </div>
+                <button 
+                    class="md:hidden text-white"
+                    id="menu-toggle"
+                    aria-label="Toggle menu"
+                >
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
+                <a href="https://utdsong.github.io/utdam/portfolio.html#about" class="block text-white hover:text-primary">About</a>
+                <a href="https://utdsong.github.io/utdam/portfolio.html#what-i-do" class="block text-white hover:text-primary">Portfolio</a>
+                <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="block text-white hover:text-primary">Contact</a>
+                <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
+                    Hire Me
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="video-projects" class="container mx-auto px-4 py-8"></main>
+
+    <div id="video-overlay" class="video-overlay">
+        <div class="video-container">
+            <div id="video-player"></div>
+        </div>
+        <div class="video-close" id="video-close">&times;</div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Sereyutdam Song. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="text/babel">
+        const projects = [
+            {
+                title: "Lectora Basic Training",
+                client: "IDOL Academy",
+                tools: "Lectora, Camtasia, Canva, Vyond",
+                duration: "8 weeks",
+                summary: "An eight-lesson online training videos course designed to train Instructional designers and E-learning developers in developing interactive E-Learning materials. The course covers everything from navigating basic features to implementing advanced functions such as interactivity, tracking user input, and publishing their first E-Learning course on the internet.",
+                challenge: "The course modules consist of a real step-by-step example walkthrough to demonstrate to the learners how each module can be implemented to add interactivity and advanced functions within their development phases. The support resources for Lectora training is limited on the internet.",
+                result: "With consistent feedback stating that both the instructional-led training and E-learning are engaging and easy to follow along.",
+                image: "img/lectora.png",
+                videos: [
+                    { id: '1', title: 'Introduction to Lectora', embed: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+                    { id: '2', title: 'Basic Navigation and Features', embed: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+                    { id: '3', title: 'Creating Interactive Elements', embed: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+                    { id: '4', title: 'Implementing User Input Tracking', embed: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+                    { id: '5', title: 'Publishing Your E-Learning Course', embed: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+                ]
+            },
+        ];
+
+        function ProjectCard({ project }) {
+            const [activeTab, setActiveTab] = React.useState('summary');
+
+            const handleViewProject = () => {
+                const videoOverlay = document.getElementById('video-overlay');
+                const videoPlayer = document.getElementById('video-player');
+                videoPlayer.innerHTML = `
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2">
+                            <div class="aspect-w-16 aspect-h-9">
+                                <iframe
+                                    src="${project.videos[0].embed}"
+                                    title="${project.videos[0].title}"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    class="w-full h-full"
+                                ></iframe>
+                            </div>
+                            <h2 class="text-xl font-semibold mt-4 text-white">${project.videos[0].title}</h2>
+                        </div>
+                        <div class="lg:col-span-1">
+                            <h3 class="text-lg font-semibold mb-4 text-white">Playlist</h3>
+                            <div class="space-y-4">
+                                ${project.videos.map((video, index) => `
+                                    <div
+                                        class="flex items-center space-x-3 p-2 rounded cursor-pointer ${index === 0 ? 'bg-gray-700' : 'hover:bg-gray-800'}"
+                                        onclick="changeVideo('${video.embed}', '${video.title}', this)"
+                                    >
+                                        <div class="flex-shrink-0 w-24 h-16 bg-gray-700 rounded overflow-hidden">
+                                            <img
+                                                src="https://img.youtube.com/vi/${video.embed.split('/').pop()}/0.jpg"
+                                                alt="${video.title}"
+                                                class="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <div class="flex-grow">
+                                            <h4 class="text-sm font-medium text-white">${video.title}</h4>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                videoOverlay.style.display = 'flex';
+            };
+
+            return (
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg project-card flex flex-col" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
+                    <div className="relative overflow-hidden pb-[56.25%]">
+                        <img src={project.image} alt={project.title} className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+                        <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <h3 className="text-2xl md:text-3xl font-bold text-white text-center px-4">{project.title}</h3>
+                        </div>
+                    </div>
+                    <div className="p-4 flex flex-col h-full">
+                        <div className="mb-3 text-sm grid grid-cols-[auto,1fr] gap-x-2 gap-y-1 items-start text-gray-700">
+                            <span className="font-semibold">Client:</span>
+                            <span>{project.client}</span>
+                            <span className="font-semibold">Tools:</span>
+                            <span>{project.tools}</span>
+                            <span className="font-semibold">Duration:</span>
+                            <span>{project.duration}</span>
+                        </div>
+                        <div className="flex mb-2">
+                            {['summary', 'challenge', 'result'].map((tab) => (
+                                <button
+                                    key={tab}
+                                    onClick={() => setActiveTab(tab)}
+                                    className={`flex-1 py-2 px-2 md:px-4 text-xs md:text-sm font-medium rounded-t-lg transition-colors duration-200 ${
+                                        activeTab === tab
+                                            ? 'bg-green-500 text-white'
+                                            : 'bg-gray-200 text-gray-700 hover:bg-green-100'
+                                    }`}
+                                >
+                                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="bg-gray-100 p-3 rounded-b-lg flex-grow">
+                            <p className="text-xs md:text-sm text-gray-700 whitespace-pre-line">{project[activeTab]}</p>
+                        </div>
+                        <div className="mt-4 flex justify-center">
+                            <button 
+                                onClick={handleViewProject}
+                                className="w-full sm:w-auto px-4 md:px-6 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base font-semibold rounded-full transition-colors duration-300"
+                            >
+                                View Project
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function VideoProjects() {
+            return (
+                <div className="container mx-auto px-4 py-8">
+                    <div className="bg-gray-800 p-6 mb-8 rounded-lg">
+                        <h1 className="text-3xl md:text-4xl font-bold text-center text-white">Video Projects</h1>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {projects.map((project, index) => (
+                            <ProjectCard key={index} project={project} />
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        
+
+        ReactDOM.render(<VideoProjects />, document.getElementById('video-projects'));
+    </script>
+
+    <script>
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Initialize VanillaTilt
+        VanillaTilt.init(document.querySelectorAll(".project-card"), {
+            max: 5,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5
+        });
+
+        // Video overlay functionality
+        const videoOverlay = document.getElementById('video-overlay');
+        const videoClose = document.getElementById('video-close');
+
+        videoClose.addEventListener('click', () => {
+            videoOverlay.style.display = 'none';
+        });
+
+        // Close video overlay when clicking outside the video container
+        videoOverlay.addEventListener('click', (event) => {
+            if (event.target === videoOverlay) {
+                videoOverlay.style.display = 'none';
+            }
+        });
+
+        // Function to change the video in the player
+        function changeVideo(embedUrl, title, element) {
+            const videoPlayer = document.getElementById('video-player');
+            const iframe = videoPlayer.querySelector('iframe');
+            const videoTitle = videoPlayer.querySelector('h2');
+            
+            iframe.src = embedUrl;
+            videoTitle.textContent = title;
+
+            // Update active video in playlist
+            const playlistItems = document.querySelectorAll('.video-container .lg\\:col-span-1 > div > div');
+            playlistItems.forEach(item => item.classList.remove('bg-gray-700'));
+            element.classList.add('bg-gray-700');
+        }
+    </script>
+</body>
+</html>
