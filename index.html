@@ -240,7 +240,7 @@
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="relative w-48 h-48 mb-4">
-                        <img src="img/IDOL badges/Vyond.png?height=150&width=150" alt="Vyond" class="achievement-badge">
+                        <img src="img/IDOL badges/vyond.png?height=150&width=150" alt="Vyond" class="achievement-badge">
                     </div>
                 </div>
             </div>
@@ -261,8 +261,8 @@
                     <p class="mb-4">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
                     <div class="space-y-2">
                         <p class="flex items-center"><i data-lucide="mail" class="mr-2"></i>
-                            <a href="/cdn-cgi/l/email-protection#ccb9b8a8ada1bfa3a2abfbfbfb8caba1ada5a0e2afa3a1" class="hover:text-primary transition duration-300">
-                                <span class="__cf_email__" data-cfemail="3d4849595c504e52535a0a0a0a7d5a505c5451135e5250">[email&#160;protected]</span>
+                            <a href="mailto:utdamsong777@gmail.com" class="hover:text-primary transition duration-300">
+                                [Protected Email]
                             </a>
                         </p>
                         <p class="flex items-center"><i data-lucide="phone" class="mr-2"></i> (855) 77-735-356</p>
@@ -497,13 +497,25 @@
         });
 
         // Initialize VanillaTilt for service cards
-        VanillaTilt.init(document.querySelectorAll(".service-card"), {
-            max: 15,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.3,
-            scale: 1.05
-        });
+        function initTilt() {
+            const isMobile = window.innerWidth <= 768;
+            VanillaTilt.init(document.querySelectorAll(".service-card"), {
+                max: isMobile ? 5 : 10,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.3,
+                scale: isMobile ? 1.02 : 1.03,
+                gyroscope: true,
+                gyroscopeMinAngleX: isMobile ? -5 : -10,
+                gyroscopeMaxAngleX: isMobile ? 5 : 10,
+                gyroscopeMinAngleY: isMobile ? -5 : -10,
+                gyroscopeMaxAngleY: isMobile ? 5 : 10
+            });
+        }
+
+        // Call initTilt on page load and window resize
+        window.addEventListener('load', initTilt);
+        window.addEventListener('resize', initTilt);
 
 
         // Parallax effect
