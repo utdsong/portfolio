@@ -179,7 +179,12 @@
     </section>
 
     <!-- Testimonial Section -->
-    <div id="testimonial-carousel"></div>
+    <section id="testimonials" class="py-12 sm:py-16 md:py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center text-primary">What People Say</h2>
+            <div id="testimonial-carousel" class="relative w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8"></div>
+        </div>
+    </section>
 
     <!-- Achievements Section -->
     <section id="achievements" class="py-20 bg-accent overflow-hidden">
@@ -217,7 +222,6 @@
                     <div class="relative w-48 h-48 mb-4">
                         <img src="img/IDOL badges/vyond.png?height=150&width=150" alt="Vyond" class="achievement-badge">
                     </div>
-                
                 </div>
             </div>
         </div>
@@ -228,6 +232,7 @@
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 overflow-hidden">
+        
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-8 text-center text-primary">Contact Me</h2>
             <div class="grid md:grid-cols-2 gap-8">
@@ -236,8 +241,8 @@
                     <p class="mb-4">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
                     <div class="space-y-2">
                         <p class="flex items-center"><i data-lucide="mail" class="mr-2"></i>
-                            <a href="mailto:utdamsong777@gmail.com" class="hover:text-primary transition duration-300">
-                                utdamsong777@gmail.com
+                            <a href="/cdn-cgi/l/email-protection#ccb9b8a8ada1bfa3a2abfbfbfb8caba1ada5a0e2afa3a1" class="hover:text-primary transition duration-300">
+                                <span class="__cf_email__" data-cfemail="3d4849595c504e52535a0a0a0a7d5a505c5451135e5250">[email&#160;protected]</span>
                             </a>
                         </p>
                         <p class="flex items-center"><i data-lucide="phone" class="mr-2"></i> (855) 77-735-356</p>
@@ -259,7 +264,7 @@
         </div>
     </section>
 
-    <script type="text/babel">
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/babel">
         // TestimonialCarousel Component
         const TestimonialCarousel = () => {
             const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -267,7 +272,7 @@
             const testimonials = [
                 { id: 1, name: "Tanya Beniquez", role: "Founder", company: "ETeach", text: "Mr. Utdam has been a huge asset to the development of my online course program. His ability to detect areas of improvement and suggest powerful solutions has dramatically improved our product, and I couldn't be happier for the collaboration." },    
                 { id: 2, name: "Anna Spear", role: "Chief Academic Officer", company: "IDOL Academy", text: "The attention to detail in developing our Lectora course was outstanding. He was responsive, open to feedback, and quick to implement changes, all while maintaining a focus on achieving the desired learning outcomes. His dedication and hard work exceeded our expectations." },
-                { id: 3, name: "Solomon Song", role: "Enegy Consultant", company: "Sevea", text: "The attention to detail in developing our Lectora course was outstanding. He was responsive, open to feedback, and quick to implement changes, all while maintaining a focus on achieving the desired learning outcomes. His dedication and hard work exceeded our expectations." },
+                { id: 3, name: "Solomon Song", role: "Energy Consultant", company: "Sevea", text: "The attention to detail in developing our Lectora course was outstanding. He was responsive, open to feedback, and quick to implement changes, all while maintaining a focus on achieving the desired learning outcomes. His dedication and hard work exceeded our expectations." },
             ];
 
             const nextTestimonial = () => {
@@ -279,47 +284,50 @@
             };
 
             return (
-                <section className="py-20 bg-light text-light">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-3xl font-bold mb-8 text-center">Testimonials</h2>
-                        <div className="relative w-full max-w-2xl mx-auto">
-                            <div className="bg-white p-8 rounded-lg shadow-md text-dark">
-                                <div className="relative h-48 overflow-hidden">
-                                    {testimonials.map((testimonial, index) => (
-                                        <div
-                                            key={testimonial.id}
-                                            className={`absolute w-full transition-all duration-300 ease-in-out ${
-                                                index === currentIndex ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
-                                            }`}
-                                        >
-                                            <p className="mb-4 italic text-gray-700 text-center">&quot;{testimonial.text}&quot;</p>
-                                            <p className="font-semibold text-gray-900  text-center">{testimonial.name}</p>
-                                            <p className="text-sm text-gray-600 text-center">{testimonial.role}, {testimonial.company}</p>
-                                        </div>
-                                    ))}
+                <div className="relative w-full max-w-4xl mx-auto">
+                    <div className="bg-white p-6 sm:p-8 md:p-10 rounded-lg shadow-md text-dark">
+                        <div className="relative min-h-[200px] sm:min-h-[180px] md:min-h-[160px] overflow-hidden">
+                            {testimonials.map((testimonial, index) => (
+                                <div
+                                    key={testimonial.id}
+                                    className={`absolute w-full transition-all duration-300 ease-in-out ${
+                                        index === currentIndex ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
+                                    }`}
+                                >
+                                    <p className="mb-4 italic text-gray-700 text-sm sm:text-base md:text-lg text-center">
+                                        &quot;{testimonial.text}&quot;
+                                    </p>
+                                    <div className="text-center">
+                                        <p className="font-semibold text-gray-900 text-base sm:text-lg">
+                                            {testimonial.name}
+                                        </p>
+                                        <p className="text-xs sm:text-sm text-gray-600">
+                                            {testimonial.role}, {testimonial.company}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <button
-                                onClick={prevTestimonial}
-                                className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full shadow-md hover:bg-opacity-80 transition duration-300"
-                                aria-label="Previous testimonial"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                </svg>
-                            </button>
-                            <button
-                                onClick={nextTestimonial}
-                                className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full shadow-md hover:bg-opacity-80 transition duration-300"
-                                aria-label="Next testimonial"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
-                            </button>
+                            ))}
                         </div>
                     </div>
-                </section>
+                    <button
+                        onClick={prevTestimonial}
+                        className="absolute top-1/2 -left-3 sm:-left-4 md:-left-8 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full shadow-md hover:bg-opacity-80 transition duration-300 z-10"
+                        aria-label="Previous testimonial"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 sm:w-6 sm:h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button
+                        onClick={nextTestimonial}
+                        className="absolute top-1/2 -right-3 sm:-right-4 md:-right-8 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full shadow-md hover:bg-opacity-80 transition duration-300 z-10"
+                        aria-label="Next testimonial"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 sm:w-6 sm:h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
             );
         };
 
@@ -503,7 +511,7 @@
         gsap.utils.toArray(".parallax").forEach((parallaxElement) => {
             const speed = parallaxElement.dataset.speed;
             gsap.to(parallaxElement, {
-                y: (i, el) => -parseFloat(speed) * el.offsetHeight,
+                y: (i, target) => -ScrollTrigger.maxScroll(window) * speed,
                 ease: "none",
                 scrollTrigger: {
                     trigger: parallaxElement,
