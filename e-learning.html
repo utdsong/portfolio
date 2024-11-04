@@ -70,6 +70,33 @@
         .project-card:hover {
             transform: translateY(-5px);
         }
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .video-container {
+            width: 90%;
+            max-width: 1200px;
+            background-color: #1f2937;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .video-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-[#1f2937] text-white">
@@ -118,6 +145,13 @@
 
     <main id="e-learning-projects" class="container mx-auto px-4 py-8"></main>
 
+    <div id="video-overlay" class="video-overlay">
+        <div class="video-container">
+            <div id="video-player"></div>
+        </div>
+        <div class="video-close" id="video-close">&times;</div>
+    </div>
+
     <footer class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-4 text-center">
             <p>&copy; 2024 Sereyutdam Song. All rights reserved.</p>
@@ -157,7 +191,16 @@
                 summary: "This is an eight-lessons course designed to train Instructional designers and E-learning developers in developing interactive E-Learning materials starting from navigating basic features to implementing advanced functions (Interactivity, tracking user input, and publishing their first E-Learning course on the internet. layers and functions in designing their interactive courses.",
                 challenge: "The course modules consist of a real step-by-step example walkthrough to demonstrate to the learners how each module can be implemented to add interactivity and advanced functions within their development phases. The support resources for Lectora training is limited on the internet.",
                 result: "With consistent feedbacks stating that both the instructional-led training and E-learning are both engaging and easy to follow along.",
-                image: "img/lectora.png?height=300&width=400"
+                image: "img/lectora.png?height=300&width=400",
+                videos: [
+                    { id: '1', title: 'Installing Lectora', href: './videos/1. Installing Lectora.mp4', thumbnail: './videos/thumbnails/video1.jpg' },
+                    { id: '2', title: 'Creating a Project', src: './videos/2. Creating a Project.mp4', thumbnail: './videos/thumbnails/video2.jpg' },
+                    { id: '3', title: 'Setting Up A Project', src: './videos/3. Setting Up A Project.mp4', thumbnail: './videos/thumbnails/video3.jpg' },
+                    { id: '4', title: 'Adding and Formatting Text', src: './videos/4. Adding and Formatting Text.mp4', thumbnail: './videos/thumbnails/video4.jpg' },
+                    { id: '5', title: 'Installing Font', src: './videos/5. Installing Font.mp4', thumbnail: './videos/thumbnails/video5.jpg' },
+                    { id: '6', title: 'Text Customization', src: './videos/6. Text Customization.mp4', thumbnail: './videos/thumbnails/video6.jpg' },
+                    { id: '7', title: 'Working with tables', src: './videos/7. Working with tables.mp4', thumbnail: './videos/thumbnails/video7.jpg' },
+                ]
             }
         ];
 
@@ -165,7 +208,7 @@
             const [activeTab, setActiveTab] = React.useState('summary');
             const [showNDAPopup, setShowNDAPopup] = React.useState(false);
 
-            const handleViewProject = () => {
+            const handleViewELearningDemo = () => {
                 if (project.title === "Geography Matter") {
                     window.location.href = "https://k12.instructure.com/login/canvas";
                 } else if (project.title === "Math Digital Content") {
@@ -175,12 +218,56 @@
                 }
             };
 
+            const handleViewTrainingVideos = () => {
+                if (project.videos) {
+                    const videoOverlay = document.getElementById('video-overlay');
+                    const videoPlayer = document.getElementById('video-player');
+                    videoPlayer.innerHTML = `
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <div class="lg:col-span-2">
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <video
+                                        src="${project.videos[0].src}"
+                                        poster="${project.videos[0].thumbnail}"
+                                        title="${project.videos[0].title}"
+                                        controls
+                                        preload="metadata"
+                                        class="w-full h-full"
+                                        onerror="this.onerror=null; console.error('Error loading video:', this.src);"
+                                    ></video>
+                                </div>
+                                <h2 class="text-xl font-semibold mt-4 text-white">${project.videos[0].title}</h2>
+                            </div>
+                            <div class="lg:col-span-1">
+                                <h3 class="text-lg font-semibold mb-4 text-white">Playlist</h3>
+                                <div class="space-y-4">
+                                    ${project.videos.map((video, index) => `
+                                        <div
+                                            class="flex items-center space-x-3 p-2 rounded cursor-pointer ${index === 0 ? 'bg-gray-700' : 'hover:bg-gray-800'}"
+                                            onclick="changeVideo('${video.src}', '${video.title}', '${video.thumbnail}', this)"
+                                        >
+                                            <div class="flex-shrink-0 w-24 h-16 bg-gray-700 rounded overflow-hidden">
+                                                <img src="${video.thumbnail}" alt="${video.title}" class="w-full h-full object-cover">
+                                            </div>
+                                            <div class="flex-grow">
+                                                <h4 class="text-sm font-medium text-white">${video.title}</h4>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    videoOverlay.style.display = 'flex';
+                }
+            };
+
             return (
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg project-card flex flex-col" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
                     <div className="relative overflow-hidden pb-[56.25%]">
                         <img src={project.image} alt={project.title} className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
                         <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <h3 className="text-2xl md:text-3xl font-bold text-white text-center px-4">{project.title}</h3>
+                            <h3  className="text-2xl md:text-3xl font-bold text-white text-center px-4">{project.title}</h3>
                         </div>
                     </div>
                     <div className="p-4 flex flex-col h-full">
@@ -210,13 +297,21 @@
                         <div className="bg-gray-100 p-3 rounded-b-lg flex-grow">
                             <p className="text-xs md:text-sm text-gray-700 whitespace-pre-line">{project[activeTab]}</p>
                         </div>
-                        <div className="mt-4 flex justify-center">
+                        <div className="mt-4 flex justify-center space-x-4">
                             <button 
-                                onClick={handleViewProject}
+                                onClick={handleViewELearningDemo}
                                 className="w-full sm:w-auto px-4 md:px-6 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base font-semibold rounded-full transition-colors duration-300"
                             >
-                                View Project
+                                E-Learning Demo
                             </button>
+                            {project.videos && (
+                                <button 
+                                    onClick={handleViewTrainingVideos}
+                                    className="w-full sm:w-auto px-4 md:px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm md:text-base font-semibold rounded-full transition-colors duration-300"
+                                >
+                                    Training Videos
+                                </button>
+                            )}
                         </div>
                         {showNDAPopup && (
                             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -267,7 +362,6 @@
         // Close mobile menu when clicking outside
         document.addEventListener('click', (event) => {
             if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                
                 mobileMenu.classList.add('hidden');
             }
         });
@@ -282,6 +376,38 @@
             glare: true,
             "max-glare": 0.5
         });
+
+        // Video overlay functionality
+        const videoOverlay = document.getElementById('video-overlay');
+        const videoClose = document.getElementById('video-close');
+
+        videoClose.addEventListener('click', () => {
+            videoOverlay.style.display = 'none';
+        });
+
+        // Close video overlay when clicking outside the video container
+        videoOverlay.addEventListener('click', (event) => {
+            if (event.target === videoOverlay) {
+                videoOverlay.style.display = 'none';
+            }
+        });
+
+        // Function to change the video in the player
+        function changeVideo(src, title, thumbnail, element) {
+            const videoPlayer = document.getElementById('video-player');
+            const video = videoPlayer.querySelector('video');
+            const videoTitle = videoPlayer.querySelector('h2');
+            
+            video.src = src;
+            video.poster = thumbnail;
+            video.load(); // Force reload of video
+            videoTitle.textContent = title;
+
+            // Update active video in playlist
+            const playlistItems = document.querySelectorAll('.video-container .lg\\:col-span-1 > div > div');
+            playlistItems.forEach(item => item.classList.remove('bg-gray-700'));
+            element.classList.add('bg-gray-700');
+        }
     </script>
 </body>
 </html>

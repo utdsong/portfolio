@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Sereyutdam Song - E-Learning Specialist Portfolio</title>
-    <link rel="icon" href="img/profile2.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sereyutdam Song - E-Learning Specialist Portfolio</title>
+    <link rel="icon" href="img/profile2.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
     <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -29,429 +27,343 @@
         }
     </script>
     <style>
-        .profile-picture {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .profile-picture:hover {
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .project-image-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .project-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .project-image-container:hover img {
             transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        .service-card {
-            transition: box-shadow 0.3s ease-in-out;
+        .project-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(31, 41, 55, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        .service-card:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .project-image-container:hover .project-image-overlay {
+            opacity: 1;
         }
-        .service-card h3 {
-            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        .project-card {
+            transition: transform 0.3s ease-out;
         }
-        .service-card:hover h3 {
-            transform: scale(1.05);
-            color: #4CAF50; /* primary color */
-        }
-        .parallax {
-            transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
-        }
-        .about-text {
-            transition: opacity 0.8s ease-out, color 0.8s ease-out;
-        }
-        .achievement-badge {
-            transition: transform 0.3s ease-in-out;
-            transform-style: preserve-3d;
-        }
-        .achievement-badge:hover {
-            transform: scale(1.1);
-        }
-        .portfolio-item {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-        .portfolio-item:hover {
+        .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .video-container {
+            width: 90%;
+            max-width: 1200px;
+            background-color: #1f2937;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .video-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        video::-internal-media-controls-download-button {
+            display: none !important;
+        }
+        video::-webkit-media-controls-enclosure {
+            overflow: hidden !important;
+        }
+        video::-webkit-media-controls-panel {
+            width: calc(100% + 30px);
         }
     </style>
 </head>
-<body class="min-h-screen bg-light text-dark">
-    <!-- Top Banner -->
-    <div class="bg-dark text-light text-center py-2">
-        <p class="text-sm">✨ Welcome to My Instructional Design and E-learning Development Portfolio ✨</p>
-    </div>
+<body class="min-h-screen bg-[#1f2937] text-white">
+    <header class="bg-gray-800 py-2 px-4">
+        <div class="container mx-auto">
+            <p class="text-center text-sm">
+                <span role="img" aria-label="star">✨</span> 
+                Welcome to My Instructional Design and E-learning Development Portfolio 
+                <span role="img" aria-label="star">✨</span>
+            </p>
+        </div>
+    </header>
 
-    <!-- Navigation -->
-    <nav class="bg-light shadow-md sticky top-0 z-50">
+    <nav class="bg-gray-800 shadow-md">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
-                <a href="./" class="text-xl md:text-2xl font-bold text-dark">
+                <a href="./" class="text-xl md:text-2xl font-bold text-white">
                     Sereyutdam Song
                 </a>
                 <div class="hidden md:flex space-x-4 items-center">
-                    <a href="#about" class="text-dark hover:text-primary transition duration-300">About</a>
-                    <a href="#what-i-do" class="text-dark hover:text-primary transition duration-300">Portfolio</a>
-                    <a href="#contact" class="text-dark hover:text-primary transition duration-300">Contact</a>
-                    <a href="#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#about" class="text-white hover:text-primary">About</a>
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#what-i-do" class="text-white hover:text-primary">Portfolio</a>
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="text-white hover:text-primary">Contact</a>
+                    <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
                         Hire Me
                     </a>
                 </div>
                 <button 
-                    class="md:hidden text-dark"
+                    class="md:hidden text-white"
                     id="menu-toggle"
+                    aria-label="Toggle menu"
                 >
-                    <i data-lucide="menu"></i>
+                    <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
             <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
-                <a href="#about" class="block text-dark hover:text-primary transition duration-300">About</a>
-                <a href="#what-i-do" class="block text-dark hover:text-primary transition duration-300">Portfolio</a>
-                <a href="#contact" class="block text-dark hover:text-primary transition duration-300">Contact</a>
-                <a href="#" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
+                <a href="https://utdsong.github.io/utdam/portfolio.html#about" class="block text-white hover:text-primary">About</a>
+                <a href="https://utdsong.github.io/utdam/portfolio.html#what-i-do" class="block text-white hover:text-primary">Portfolio</a>
+                <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="block text-white hover:text-primary">Contact</a>
+                <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
                     Hire Me
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="py-10 md:py-20 bg-accent text-light overflow-hidden">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
-                <div class="">
-                    <img 
-                        src="img/profile2.png" 
-                        alt="Sereyutdam Song" 
-                        class="rounded-full w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover profile-picture"
-                    >
-                </div>
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 opacity-100" id="hero-title">Sereyutdam Song</h1>
-                <p class="text-lg md:text-xl lg:text-2xl mb-4 md:mb-6 opacity-100" id="hero-subtitle">
-                    E-Learning Specialist & Instructional Designer
-                </p>
-                <div class="opacity-100" id="hero-cta">
-                    <button 
-                        class="bg-primary text-white p-3 rounded-full font-semibold text-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105"
-                        onclick="scrollToAbout()"
-                        aria-label="Scroll to About section"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+    <main id="e-learning-projects" class="container mx-auto px-4 py-8"></main>
+
+    <div id="video-overlay" class="video-overlay">
+        <div class="video-container">
+            <div id="video-player"></div>
         </div>
-    </section>
+        <div class="video-close" id="video-close">&times;</div>
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 overflow-hidden">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 text-center text-primary">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center gap-8">
-                <div class="md:w-1/3 flex justify-center">
-                    <div class="relative w-64 h-64">
-                        <img src="img/utdam.png" alt="Sereyutdam Song" class="rounded-full w-full h-full object-cover">
-                    </div>
-                </div>
-                <div class="md:w-2/3">
-                    <p class="text-lg mb-4 about-text text-black">
-                        I'm an experienced instructional design and e-learning specialist with a passion to bridge the learning experience gaps. With over 12 years in the educational field training to the field of instructional design and online development, I specialize in conducting gaps analysis, storyboarding bridging-gaps solution, and rapid-prototyping the E-learning experiences.
-                    </p>
-                    <p class="text-lg mb-4 about-text text-black">
-                        The ultimate package I have to offer is to help my clients design and ​develop Simplified learning solutions and E-Learning Materias.</p>
-                </div>
-            </div>
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Sereyutdam Song. All rights reserved.</p>
         </div>
-    </section>
+    </footer>
 
-    <!-- What I Do Section -->
-    <section id="what-i-do" class="py-20 bg-accent text-light overflow-hidden">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">What I Do!</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex flex-col items-center service-card" data-tilt data-tilt-max="15">
-                    <div class="w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
-                        <img src="img/elearning.png" alt="E-learning" class="w-full h-full object-contain p-2 transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-dark transition-all duration-300 hover:text-primary">E-learning</h3>
-                    <a href="./e-learning" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105">Learn More</a>
-                </div>
-                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex flex-col items-center service-card" data-tilt data-tilt-max="15">
-                    <div class="w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
-                        <img src="img/instructorled.png" alt="Instructional-Led" class="w-full h-full object-contain p-2 transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-dark transition-all duration-300 hover:text-primary">Instructional-Led</h3>
-                    <a href="./instructional-led" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105">Learn More</a>
-                </div>
-                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex flex-col items-center service-card" data-tilt data-tilt-max="15">
-                    <div class="w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
-                        <img src="img/jobaids.png" alt="Job-Aids Infographic" class="w-full h-full object-contain p-2 transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-dark transition-all duration-300 hover:text-primary">Job-Aids Infographic</h3>
-                    <a href="./job-aid-infographic" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105">Learn More</a>
-                </div>
-                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex flex-col items-center service-card" data-tilt data-tilt-max="15">
-                    <div class="w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
-                        <img src="img/scriptingandstoryboard.png" alt="Scripting & Storyboard" class="w-full h-full object-contain p-2 transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-dark transition-all duration-300 hover:text-primary">Scripting & Storyboard</h3>
-                    <a href="./scripting-&-storyboard" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105">Learn More</a>
-                </div>
-                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex flex-col items-center service-card" data-tilt data-tilt-max="15">
-                    <div class="w-full h-64 flex items-center justify-center mb-4 overflow-hidden">
-                        <img src="img/video.png" alt="Video" class="w-full h-full object-contain p-2 transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-dark transition-all duration-300 hover:text-primary">Video</h3>
-                    <a href="./video" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script type="text/babel">
+        const projects = [
+            {
+                title: "Geography Matter",
+                client: "E2STEM Education",
+                tools: "Articulate Storyline, Canva",
+                duration: "1.5 month",
+                summary: "This is a three-week course designed to assist learning in identifying locations on the Cambodian Map, furthering the world map, and coordination identification with the help of memory palace strategies (Base-Below-Left-Downward).\n\n" + 
+                        "Login Credentials:\n" +
+                        "Email: utdamsong@gmail.com\n" +
+                        "Password: Geography2022",
+                challenge: "According to the need analysis, the learners in Cambodian high schools struggle much in locating their destination. They were barely able to identify the west, east, south, and north direction on the map.",
+                result: "The survey after the implementation among 5 groups of K12 Learners revealed the increased engagement and how the quiz challenges them as if it is a Gamified challenge.",
+                image: "img/geography.png?height=300&width=400"
+            },
+            {
+                title: "Math Digital Content",
+                client: "Good Neighbor Cambodia Organization",
+                tools: "Google Doc, Coding Framework, 40K LMS",
+                duration: "6 months",
+                summary: "GNC Math Digital Learning Content is designed to assist learners during their 3 stations of learning circle (Collaborative activities station, Teacher-led instruction, and Online instruction.). Digital content is built to assist learners during their Online Instruction station in which learners can practice what they have learned through interactive types of exercises (Multiple Choice, Drag and Drop, and Fill in the blank).",
+                challenge: "The digital contents need be designed in order of difficulty, scaffolded and construct on new knowledge. 6 new interactions developed mainly to support the learning experience especially in the context of Math.",
+                result: "The Web application was successfully launched and deployed offline on the Raspberry Pi which learners in the unreached area can access the quality digital math content.",
+                image: "img/gncdashboard.png?height=300&width=400"
+            },
+            {
+                title: "Lectora 21",
+                client: "IDOL Academy (US Vocational Training School)",
+                tools: "Lectora, Camtasia, and Canva",
+                duration: "4 months",
+                summary: "This is an eight-lessons course designed to train Instructional designers and E-learning developers in developing interactive E-Learning materials starting from navigating basic features to implementing advanced functions (Interactivity, tracking user input, and publishing their first E-Learning course on the internet. layers and functions in designing their interactive courses.",
+                challenge: "The course modules consist of a real step-by-step example walkthrough to demonstrate to the learners how each module can be implemented to add interactivity and advanced functions within their development phases. The support resources for Lectora training is limited on the internet.",
+                result: "With consistent feedbacks stating that both the instructional-led training and E-learning are both engaging and easy to follow along.",
+                image: "img/lectora.png?height=300&width=400",
+                videos: [
+                    { id: '1', title: 'Installing Lectora', src: './videos/1. Installing Lectora.mp4', thumbnail: './thumbnails/video1.jpg' },
+                    { id: '2', title: 'Creating a Project', src: './videos/2. Creating a Project.mp4', thumbnail: './thumbnails/video2.jpg' },
+                    { id: '3', title: 'Setting Up A Project', src: './videos/3. Setting Up A Project.mp4', thumbnail: './thumbnails/video3.jpg' },
+                    { id: '4', title: 'Adding and Formatting Text', src: './videos/4. Adding and Formatting Text.mp4', thumbnail: './thumbnails/video4.jpg' },
+                    { id: '5', title: 'Installing Font', src: './videos/5. Installing Font.mp4', thumbnail: './thumbnails/video5.jpg' },
+                    { id: '6', title: 'Text Customization', src: './videos/6. Text Customization.mp4', thumbnail: './thumbnails/video6.jpg' },
+                    { id: '7', title: 'Working with tables', src: './videos/7. Working with tables.mp4', thumbnail: './thumbnails/video7.jpg' },
+                ]
+            }
+        ];
 
-    <!-- Testimonial Section -->
-    <section id="testimonials" class="py-12 sm:py-16 md:py-20 bg-light">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center text-primary">What People Say</h2>
-            <div id="testimonial-carousel" class="relative w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8"></div>
-        </div>
-    </section>
+        function ProjectCard({ project }) {
+            const [activeTab, setActiveTab] = React.useState('summary');
+            const [showNDAPopup, setShowNDAPopup] = React.useState(false);
 
-    <!-- Achievements Section  -->
-    <section id="achievements" class="py-20 bg-accent overflow-hidden">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center text-white">Achievements</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <div class="flex flex-col items-center">
-                    <div class="relative w-48 h-48 mb-4">
-                        <img src="img/IDOL badges/id.png?height=150&width=150" alt="Instructional Design" class="achievement-badge">
-                    </div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="relative w-48 h-48 mb-4">
-                        <img src="img/IDOL badges/lxd.png?height=150&width=150" alt="Learning Experience Design" class="achievement-badge">
-                    </div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="relative w-48 h-48 mb-4">
-                        <img src="img/IDOL badges/ilt.png?height=150&width=150" alt="Instructor-Led Training" class="achievement-badge">
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="flex flex-col items-center">
-                    <div class="relative w-48 h-48 mb-4">
-                        <img src="img/IDOL badges/storyline.png?height=150&width=150" alt="Storyline" class="achievement-badge">
-                    </div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="relative w-48 h-48 mb-4">
-                        <img src="img/IDOL badges/genially.png?height=150&width=150" alt="Genially" class="achievement-badge">
-                    </div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="relative w-48 h-48 mb-4">
-                        <img src="img/IDOL badges/vyond.png?height=150&width=150" alt="Vyond" class="achievement-badge">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <div id="portfolio-section"></div>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 overflow-hidden">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 text-center text-primary">Contact Me</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Get in Touch</h3>
-                    <p class="mb-4">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
-                    <div class="space-y-2">
-                        <p class="flex items-center"><i data-lucide="mail" class="mr-2"></i>
-                            <a href="/cdn-cgi/l/email-protection#651011010408160a0b02525252250208040c094b060a08" class="hover:text-primary transition duration-300">
-                                [Protected Email]
-                            </a>
-                        </p>
-                        <p class="flex items-center"><i data-lucide="phone" class="mr-2"></i> (855) 77-735-356</p>
-                        <p class="flex items-center"><i data-lucide="linkedin" class="mr-2"></i> <a href="https://linkedin.com/in/sereyutdamsong/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition duration-300">linkedin.com/in/sereyutdamsong/</a></p>
-                        <p class="flex items-center"><i data-lucide="github" class="mr-2"></i> <a href="https://github.com/utdsong" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition duration-300">github.com/utdsong</a></p>
-                    </div>
-                </div>
-                <form class="space-y-4" id="contact-form" onsubmit="return sendEmail(event)">
-                    <input type="text" name="name" placeholder="Your Name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-300">
-                    <input type="email" name="email" placeholder="Your Email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-300">
-                    <input type="text" name="subject" placeholder="Subject" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary transition duration-300">
-                    <textarea name="message" placeholder="Your Message" required class="w-full px-3 py-2 border border-gray-300 rounded-md h-32 focus:outline-none focus:ring-2 focus:ring-primary transition duration-300"></textarea>
-                    <button type="submit" class="w-full bg-secondary text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 transform hover:scale-105">Send Message</button>
-                </form>
-                <div id="success-message" class="mt-4 p-4 bg-green-100 text-green-700 rounded-md hidden">
-                    Thank you for your message. Your email client should now open with the pre-filled message.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/babel">
-        // TestimonialCarousel Component
-        const TestimonialCarousel = () => {
-            const [currentIndex, setCurrentIndex] = React.useState(0);
-
-            const testimonials = [
-                { id: 1, name: "Tanya Beniquez", role: "Founder", company: "ETeach", text: "Mr. Utdam has been a huge asset to the development of my online course program. His ability to detect areas of improvement and suggest powerful solutions has dramatically improved our product, and I couldn't be happier for the collaboration." },    
-                { id: 2, name: "Anna Spear", role: "Chief Academic Officer", company: "IDOL Academy", text: "The attention to detail in developing our Lectora course was outstanding. He was responsive, open to feedback, and quick to implement changes, all while maintaining a focus on achieving the desired learning outcomes. His dedication and hard work exceeded our expectations." },
-                { id: 3, name: "Solomon Song", role: "Energy Consultant", company: "Sevea", text: "The attention to detail in developing our Lectora course was outstanding. He was responsive, open to feedback, and quick to implement changes, all while maintaining a focus on achieving the desired learning outcomes. His dedication and hard work exceeded our expectations." },
-            ];
-
-            const nextTestimonial = () => {
-                setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+            const handleViewELearningDemo = () => {
+                if (project.title === "Geography Matter") {
+                    window.location.href = "https://k12.instructure.com/login/canvas";
+                } else if (project.title === "Math Digital Content") {
+                    setShowNDAPopup(true);
+                } else if (project.title === "Lectora 21") {
+                    window.open("https://360.articulate.com/review/content/5011a91e-7a7b-44c3-b800-4c191f775353/review", "_blank");
+                }
             };
 
-            const prevTestimonial = () => {
-                setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
+            const handleViewTrainingVideos = () => {
+                if (project.videos) {
+                    const videoOverlay = document.getElementById('video-overlay');
+                    const videoPlayer = document.getElementById('video-player');
+                    videoPlayer.innerHTML = `
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <div class="lg:col-span-2">
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <video
+                                        id="main-video-player"
+                                        src="${project.videos[0].src}"
+                                        poster="${project.videos[0].thumbnail}"
+                                        title="${project.videos[0].title}"
+                                        controls
+                                        preload="metadata"
+                                        class="w-full h-full"
+                                        onerror="this.onerror=null; console.error('Error loading video:', this.src);"
+                                        controlsList="disabled"
+                                        oncontextmenu="return false;"
+                                    ></video>
+                                </div>
+                                <h2 class="text-xl font-semibold mt-4 text-white">${project.videos[0].title}</h2>
+                            </div>
+                            <div class="lg:col-span-1">
+                                <h3 class="text-lg font-semibold mb-4 text-white">Playlist</h3>
+                                <div class="space-y-4">
+                                    ${project.videos.map((video, index) => `
+                                        <div
+                                            class="flex items-center space-x-3 p-2 rounded cursor-pointer ${index === 0 ? 'bg-gray-700' : 'hover:bg-gray-800'}"
+                                            onclick="changeVideo('${video.src}', '${video.title}', '${video.thumbnail}', this)"
+                                        >
+                                            <div class="flex-shrink-0 w-24 h-16 bg-gray-700 rounded overflow-hidden">
+                                                <img src="${video.thumbnail}" alt="${video.title}" class="w-full h-full object-cover">
+                                            </div>
+                                            <div class="flex-grow">
+                                                <h4 class="text-sm font-medium text-white">${video.title}</h4>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    videoOverlay.style.display = 'flex';
+                }
             };
 
             return (
-                <div className="relative w-full max-w-4xl mx-auto">
-                    <div className="bg-white p-6 sm:p-8 md:p-10 rounded-lg shadow-md text-dark">
-                        <div className="relative min-h-[200px] sm:min-h-[180px] md:min-h-[160px] overflow-hidden">
-                            {testimonials.map((testimonial, index) => (
-                                <div
-                                    key={testimonial.id}
-                                    className={`absolute w-full transition-all duration-300 ease-in-out ${
-                                        index === currentIndex ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
-                                    }`}
-                                >
-                                    <p className="mb-4 italic text-gray-700 text-sm sm:text-base md:text-lg text-center">
-                                        &quot;{testimonial.text}&quot;
-                                    </p>
-                                    <div className="text-center">
-                                        <p className="font-semibold text-gray-900 text-base sm:text-lg">
-                                            {testimonial.name}
-                                        </p>
-                                        <p className="text-xs sm:text-sm text-gray-600">
-                                            {testimonial.role}, {testimonial.company}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg project-card flex flex-col" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare  data-tilt-max-glare="0.5">
+                    <div className="relative overflow-hidden pb-[56.25%]">
+                        <img src={project.image} alt={project.title} className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+                        <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <h3  className="text-2xl md:text-3xl font-bold text-white text-center px-4">{project.title}</h3>
                         </div>
                     </div>
-                    <button
-                        onClick={prevTestimonial}
-                        className="absolute top-1/2 -left-3 sm:-left-4 md:-left-8 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full shadow-md hover:bg-opacity-80 transition duration-300 z-10"
-                        aria-label="Previous testimonial"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 sm:w-6 sm:h-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </button>
-                    <button
-                        onClick={nextTestimonial}
-                        className="absolute top-1/2 -right-3 sm:-right-4 md:-right-8 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full shadow-md hover:bg-opacity-80 transition duration-300 z-10"
-                        aria-label="Next testimonial"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 sm:w-6 sm:h-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                </div>
-            );
-        };
-
-        // Portfolio Section Component
-        const PortfolioSection = () => {
-            const [filter, setFilter] = React.useState('all');
-
-            const projects = [
-                { id: 1, title: "Lectora Basic Training", category: "e-learning", image: "img/lectora.png" },
-                { id: 2, title: "Digital Math Content", category: "e-learning", image: "img/gncdashboard.png" },
-                { id: 3, title: "Geography Matters", category: "gamification", image: "img/geography.png" },
-                { id: 4, title: "Virtual Reality Anatomy 101", category: "vr", image: "img/vrroom.png" },
-            ];
-
-            const categories = ['all', ...new Set(projects.map(project => project.category))];
-
-            const filteredProjects = filter === 'all' 
-                ? projects 
-                : projects.filter(project => project.category === filter);
-
-            return (
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-4xl font-bold text-center text-green-500 mb-8">Portfolio</h2>
-                        <div className="flex justify-center space-x-4 mb-8">
-                            {categories.map((category) => (
+                    <div className="p-4 flex flex-col h-full">
+                        <div className="mb-3 text-sm grid grid-cols-[auto,1fr] gap-x-2 gap-y-1 items-start text-gray-700">
+                            <span className="font-semibold">Client:</span>
+                            <span>{project.client}</span>
+                            <span className="font-semibold">Tools:</span>
+                            <span>{project.tools}</span>
+                            <span className="font-semibold">Duration:</span>
+                            <span>{project.duration}</span>
+                        </div>
+                        <div className="flex mb-2">
+                            {['summary', 'challenge', 'result'].map((tab) => (
                                 <button
-                                    key={category}
-                                    onClick={() => setFilter(category)}
-                                    className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                                        filter === category
+                                    key={tab}
+                                    onClick={() => setActiveTab(tab)}
+                                    className={`flex-1 py-2 px-2 md:px-4 text-xs md:text-sm font-medium rounded-t-lg transition-colors duration-200 ${
+                                        activeTab === tab
                                             ? 'bg-green-500 text-white'
-                                            : 'bg-gray-200 text-gray-700 hover:bg-green-500 hover:text-white'
+                                            : 'bg-gray-200 text-gray-700 hover:bg-green-100'
                                     }`}
                                 >
-                                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
                                 </button>
                             ))}
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {filteredProjects.map((project) => (
-                                <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-64 object-cover"
-                                    />
-                                    <div className="p-6">
-                                        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                                        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-                                            {project.category}
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
+                        <div className="bg-gray-100 p-3 rounded-b-lg flex-grow">
+                            <p className="text-xs md:text-sm text-gray-700 whitespace-pre-line">{project[activeTab]}</p>
                         </div>
+                        <div className="mt-4 flex justify-center space-x-4">
+                            <button 
+                                onClick={handleViewELearningDemo}
+                                className="w-full sm:w-auto px-4 md:px-6 py-2 bg-green-500 hover:bg-green-600 text-white text-sm md:text-base font-semibold rounded-full transition-colors duration-300"
+                            >
+                                E-Learning Demo
+                            </button>
+                            {project.videos && (
+                                <button 
+                                    onClick={handleViewTrainingVideos}
+                                    className="w-full sm:w-auto px-4 md:px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm md:text-base font-semibold rounded-full transition-colors duration-300"
+                                >
+                                    Training Videos
+                                </button>
+                            )}
+                        </div>
+                        {showNDAPopup && (
+                            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                                <div className="bg-white p-6 rounded-lg max-w-md">
+                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Access Restricted</h3>
+                                    <p className="text-gray-700 mb-4">Since this project is a non-disclosure agreement project, the course demo access will be unavailable.</p>
+                                    <button 
+                                        onClick={() => setShowNDAPopup(false)}
+                                        className="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition-colors duration-300"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                </section>
+                </div>
             );
-        };
+        }
 
-        // Render TestimonialCarousel
-        ReactDOM.render(<TestimonialCarousel />, document.getElementById('testimonial-carousel'));
+        function ELearningProjects() {
+            return (
+                <div className="container mx-auto px-4 py-8">
+                    <div className="bg-gray-800 p-6 mb-8 rounded-lg">
+                        <h1 className="text-3xl md:text-4xl font-bold text-center text-white">E-Learning Projects</h1>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {projects.map((project, index) => (
+                            <ProjectCard key={index} project={project} />
+                        ))}
+                    </div>
+                </div>
+            );
+        }
 
-        // Render PortfolioSection
-        ReactDOM.render(<PortfolioSection />, document.getElementById('portfolio-section'));
+        ReactDOM.render(<ELearningProjects />, document.getElementById('e-learning-projects'));
     </script>
 
     <script>
-        // Handle contact form submission
-        function sendEmail(event) {
-            event.preventDefault();
-            const form = event.target;
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            // Construct the mailto URL
-            const mailtoUrl = `mailto:utdamsong777@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`)}`;
-
-            // Open the user's default email client
-            window.location.href = mailtoUrl;
-
-            // Clear the form
-            form.reset();
-
-            // Show the success message
-            const successMessage = document.getElementById('success-message');
-            successMessage.classList.remove('hidden');
-
-            // Hide the success message after 5 seconds
-            setTimeout(() => {
-                successMessage.classList.add('hidden');
-            }, 5000);
-
-            return false;
-        }
-
-        // Mobile menu toggle
+        // Mobile menu functionality
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -459,89 +371,71 @@
             mobileMenu.classList.toggle('hidden');
         });
 
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // GSAP animations
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Hero section animations
-        gsap.from("#hero-title", { opacity: 0, y: 20, duration: 1, delay: 0.5 });
-        gsap.from("#hero-subtitle", { opacity: 0, y: 20, duration: 1, delay: 0.7 });
-        gsap.from("#hero-cta", { opacity: 0, y: 20, duration: 1, delay: 0.9 });
-
-        // About section animations
-        gsap.utils.toArray(".about-text").forEach((text, i) => {
-            gsap.from(text, {
-                opacity: 0,
-                y: 20,
-                duration: 0.8,
-                delay: i * 0.2,
-                scrollTrigger: {
-                    trigger: text,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse"
-                }
-            });
+        // Initialize VanillaTilt
+        VanillaTilt.init(document.querySelectorAll(".project-card"), {
+            max: 5,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5
         });
 
-        // Achievement badge animations
-        gsap.utils.toArray(".achievement-badge").forEach((badge, i) => {
-            gsap.from(badge, {
-                opacity: 0,
-                scale: 0.8,
-                duration: 0.5,
-                delay: i * 0.1,
-                scrollTrigger: {
-                    trigger: badge,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse"
-                }
-            });
+        // Disable right-click on video elements
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'VIDEO') {
+                e.preventDefault();
+            }
+        }, false);
+
+        // Video overlay functionality
+        const videoOverlay = document.getElementById('video-overlay');
+        const videoClose = document.getElementById('video-close');
+
+        videoClose.addEventListener('click', () => {
+            closeVideoOverlay();
         });
 
-        // Initialize VanillaTilt for service cards
-        function initTilt() {
-            const isMobile = window.innerWidth <= 768;
-            VanillaTilt.init(document.querySelectorAll(".service-card"), {
-                max: isMobile ? 5 : 10,
-                speed: 400,
-                glare: true,
-                "max-glare": 0.3,
-                scale: isMobile ? 1.02 : 1.03,
-                gyroscope: true,
-                gyroscopeMinAngleX: isMobile ? -5 : -10,
-                gyroscopeMaxAngleX: isMobile ? 5 : 10,
-                gyroscopeMinAngleY: isMobile ? -5 : -10,
-                gyroscopeMaxAngleY: isMobile ? 5 : 10
-            });
+        // Close video overlay when clicking outside the video container
+        videoOverlay.addEventListener('click', (event) => {
+            if (event.target === videoOverlay) {
+                closeVideoOverlay();
+            }
+        });
+
+        function closeVideoOverlay() {
+            videoOverlay.style.display = 'none';
+            const video = document.getElementById('main-video-player');
+            if (video) {
+                video.pause();
+            }
         }
 
-        // Call initTilt on page load and window resize
-        window.addEventListener('load', initTilt);
-        window.addEventListener('resize', initTilt);
+        // Function to change the video in the player
+        function changeVideo(src, title, thumbnail, element) {
+            const videoPlayer = document.getElementById('video-player');
+            const video = videoPlayer.querySelector('video');
+            const videoTitle = videoPlayer.querySelector('h2');
+            
+            video.src = src;
+            video.poster = thumbnail;
+            video.setAttribute('controlsList', 'nodownload');
+            video.oncontextmenu = () => false;
+            video.load(); // Force reload of video
+            videoTitle.textContent = title;
 
-
-        // Parallax effect
-        gsap.utils.toArray(".parallax").forEach((parallaxElement) => {
-            const speed = parallaxElement.dataset.speed;
-            gsap.to(parallaxElement, {
-                y: (i, target) => -ScrollTrigger.maxScroll(window) * speed,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: parallaxElement,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-        });
-
-        function scrollToAbout() {
-            const aboutSection = document.getElementById('about');
-            aboutSection.scrollIntoView({ behavior: 'smooth' });
+            // Update active video in playlist
+            const playlistItems = document.querySelectorAll('.video-container .lg\\:col-span-1 > div > div');
+            playlistItems.forEach(item => item.classList.remove('bg-gray-700'));
+            element.classList.add('bg-gray-700');
         }
     </script>
 </body>
