@@ -193,13 +193,13 @@
                 result: "With consistent feedbacks stating that both the instructional-led training and E-learning are both engaging and easy to follow along.",
                 image: "img/lectora.png?height=300&width=400",
                 videos: [
-                    { id: '1', title: 'Installing Lectora', href: './videos/1. Installing Lectora.mp4', thumbnail: './videos/thumbnails/video1.jpg' },
-                    { id: '2', title: 'Creating a Project', src: './videos/2. Creating a Project.mp4', thumbnail: './videos/thumbnails/video2.jpg' },
-                    { id: '3', title: 'Setting Up A Project', src: './videos/3. Setting Up A Project.mp4', thumbnail: './videos/thumbnails/video3.jpg' },
-                    { id: '4', title: 'Adding and Formatting Text', src: './videos/4. Adding and Formatting Text.mp4', thumbnail: './videos/thumbnails/video4.jpg' },
-                    { id: '5', title: 'Installing Font', src: './videos/5. Installing Font.mp4', thumbnail: './videos/thumbnails/video5.jpg' },
-                    { id: '6', title: 'Text Customization', src: './videos/6. Text Customization.mp4', thumbnail: './videos/thumbnails/video6.jpg' },
-                    { id: '7', title: 'Working with tables', src: './videos/7. Working with tables.mp4', thumbnail: './videos/thumbnails/video7.jpg' },
+                    { id: '1', title: 'Installing Lectora', src: 'https://www.youtube.com/watch?v=1ySuBymCyGU', thumbnail: 'https://img.youtube.com/vi/1ySuBymCyGU/0.jpg' },
+                    { id: '2', title: 'Creating a Project', src: 'https://www.youtube.com/watch?v=F67mlnrshq8', thumbnail: 'https://img.youtube.com/vi/F67mlnrshq8/0.jpg' },
+                    { id: '3', title: 'Setting Up A Project', src: 'https://www.youtube.com/watch?v=CNuM-h5Qtj0', thumbnail: 'https://img.youtube.com/vi/CNuM-h5Qtj0/0.jpg' },
+                    { id: '4', title: 'Adding and Formatting Text', src: 'https://www.youtube.com/watch?v=uJHBw5mDfLQ', thumbnail: 'https://img.youtube.com/vi/uJHBw5mDfLQ/0.jpg' },
+                    { id: '5', title: 'Installing Font', src: 'https://www.youtube.com/watch?v=rtMa30NQnwo', thumbnail: 'https://img.youtube.com/vi/rtMa30NQnwo/0.jpg' },
+                    { id: '6', title: 'Text Customization', src: 'https://www.youtube.com/watch?v=hmFBpQhxrxA', thumbnail: 'https://img.youtube.com/vi/hmFBpQhxrxA/0.jpg' },
+                    { id: '7', title: 'Working with tables', src: 'https://www.youtube.com/watch?v=apNtO0xxNQI', thumbnail: 'https://img.youtube.com/vi/apNtO0xxNQI/0.jpg' },
                 ]
             }
         ];
@@ -225,16 +225,16 @@
                     videoPlayer.innerHTML = `
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                             <div class="lg:col-span-2">
-                                <div class="aspect-w-16 aspect-h-9">
-                                    <video
-                                        src="${project.videos[0].src}"
-                                        poster="${project.videos[0].thumbnail}"
+                                <div style="padding:56.25% 0 0 0;position:relative;">
+                                    <iframe
+                                        id="main-video-player"
+                                        src="${project.videos[0].src.replace('watch?v=', 'embed/')}"
+                                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                        frameborder="0"
+                                        allow="autoplay; fullscreen; picture-in-picture"
+                                        allowfullscreen
                                         title="${project.videos[0].title}"
-                                        controls
-                                        preload="metadata"
-                                        class="w-full h-full"
-                                        onerror="this.onerror=null; console.error('Error loading video:', this.src);"
-                                    ></video>
+                                    ></iframe>
                                 </div>
                                 <h2 class="text-xl font-semibold mt-4 text-white">${project.videos[0].title}</h2>
                             </div>
@@ -244,7 +244,7 @@
                                     ${project.videos.map((video, index) => `
                                         <div
                                             class="flex items-center space-x-3 p-2 rounded cursor-pointer ${index === 0 ? 'bg-gray-700' : 'hover:bg-gray-800'}"
-                                            onclick="changeVideo('${video.src}', '${video.title}', '${video.thumbnail}', this)"
+                                            onclick="changeVideo('${video.src}', '${video.title}', this)"
                                         >
                                             <div class="flex-shrink-0 w-24 h-16 bg-gray-700 rounded overflow-hidden">
                                                 <img src="${video.thumbnail}" alt="${video.title}" class="w-full h-full object-cover">
@@ -263,11 +263,12 @@
             };
 
             return (
-                <div className="bg-white rounded-lg overflow-hidden shadow-lg project-card flex flex-col" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
+                <div  className="bg-white rounded-lg overflow-hidden shadow-lg project-card flex flex-col" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
+                    
                     <div className="relative overflow-hidden pb-[56.25%]">
                         <img src={project.image} alt={project.title} className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
                         <div className="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <h3  className="text-2xl md:text-3xl font-bold text-white text-center px-4">{project.title}</h3>
+                            <h3 className="text-2xl md:text-3xl font-bold text-white text-center px-4">{project.title}</h3>
                         </div>
                     </div>
                     <div className="p-4 flex flex-col h-full">
@@ -382,25 +383,32 @@
         const videoClose = document.getElementById('video-close');
 
         videoClose.addEventListener('click', () => {
-            videoOverlay.style.display = 'none';
+            closeVideoOverlay();
         });
 
         // Close video overlay when clicking outside the video container
         videoOverlay.addEventListener('click', (event) => {
             if (event.target === videoOverlay) {
-                videoOverlay.style.display = 'none';
+                closeVideoOverlay();
             }
         });
 
+        function closeVideoOverlay() {
+            videoOverlay.style.display = 'none';
+            const iframe = document.getElementById('main-video-player');
+            if (iframe) {
+                iframe.src = iframe.src; // This reloads the iframe, effectively stopping the video
+            }
+        }
+
         // Function to change the video in the player
-        function changeVideo(src, title, thumbnail, element) {
+        function changeVideo(src, title, element) {
             const videoPlayer = document.getElementById('video-player');
-            const video = videoPlayer.querySelector('video');
+            const iframe = videoPlayer.querySelector('iframe');
             const videoTitle = videoPlayer.querySelector('h2');
             
-            video.src = src;
-            video.poster = thumbnail;
-            video.load(); // Force reload of video
+            iframe.src = src.replace('watch?v=', 'embed/');
+            iframe.title = title;
             videoTitle.textContent = title;
 
             // Update active video in playlist
