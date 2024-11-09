@@ -69,45 +69,6 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        @keyframes expandWidth {
-            from { transform: scaleX(0); }
-            to { transform: scaleX(1); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        @keyframes floatDelayed {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(-5deg); }
-        }
-        .animate-expandWidth {
-            animation: expandWidth 1s ease-out forwards;
-        }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-            animation: floatDelayed 6s ease-in-out infinite;
-            animation-delay: 1s;
-        }
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
-        }
-        .animate-pulse {
-            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation-duration: 4s;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.05; }
-            50% { opacity: 0.1; }
-        }
-        #mobile-menu {
-            transition: all 0.3s ease-in-out;
-            transform-origin: top;
-        }
     </style>
 </head>
 <body class="min-h-screen bg-light text-dark">
@@ -150,32 +111,20 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[80vh] bg-[#4A5568] text-light overflow-hidden px-4 sm:px-6 lg:px-8">
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute -inset-[10px] bg-primary/10">
-                <div class="absolute inset-0 bg-grid-white/10 bg-grid [mask-image:radial-gradient(white,transparent_85%)]"></div>
-            </div>
-        </div>
-        <div class="relative z-10 container mx-auto px-4 py-10 flex items-center justify-center min-h-[80vh]">
-            <div class="flex flex-col items-center justify-center text-center max-w-3xl mx-auto">
-                <div class="mb-8 relative">
-                    <div class="absolute inset-0 animate-pulse bg-primary/20 rounded-full"></div>
+    <section class="py-10 md:py-20 bg-accent text-light overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
+                <div class="">
                     <img 
                         src="img/profile2.png" 
                         alt="Sereyutdam Song" 
-                        class="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-white shadow-xl transform transition-transform duration-500 hover:scale-105"
+                        class="rounded-full w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover profile-picture"
                     >
                 </div>
-                <div class="relative mb-4 p-2">
-                    <div class="absolute inset-0 bg-primary opacity-10 rounded-lg blur-xl animate-pulse"></div>
-                    <h1 class="relative text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight" id="hero-title">Sereyutdam Song</h1>
-                </div>
-                <div class="relative mb-8">
-                    <p class="text-xl md:text-2xl lg:text-3xl text-white/90 font-medium" id="hero-subtitle">
-                        E-Learning Specialist & Instructional Designer
-                    </p>
-                    <div class="absolute bottom-0 left-0 w-full h-0.5 bg-secondary scale-x-0 animate-expandWidth"></div>
-                </div>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 opacity-100" id="hero-title">Sereyutdam Song</h1>
+                <p class="text-lg md:text-xl lg:text-2xl mb-4 md:mb-6 opacity-100" id="hero-subtitle">
+                    E-Learning Specialist & Instructional Designer
+                </p>
                 <div class="opacity-100" id="hero-cta">
                     <button 
                         class="bg-primary text-white p-3 rounded-full font-semibold text-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105"
@@ -189,8 +138,6 @@
                 </div>
             </div>
         </div>
-        <div class="absolute top-20 -left-20 w-64 h-64 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg shadow-xl animate-float"></div>
-        <div class="absolute bottom-20 -right-20 w-64 h-64 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg shadow-xl animate-float-delayed"></div>
     </section>
 
     <!-- About Section -->
@@ -204,10 +151,10 @@
                     </div>
                 </div>
                 <div class="md:w-2/3">
-                    <p class="text-lg mb-4 about-text text-gray-800 dark:text-gray-200">
+                    <p class="text-lg mb-4 about-text text-black">
                         I'm an experienced instructional design and e-learning specialist with a passion to bridge the learning experience gaps. With over 12 years in the educational field training to the field of instructional design and online development, I specialize in conducting gaps analysis, storyboarding bridging-gaps solution, and rapid-prototyping the E-learning experiences.
                     </p>
-                    <p class="text-lg mb-4 about-text text-gray-800 dark:text-gray-200">
+                    <p class="text-lg mb-4 about-text text-black">
                         The ultimate package I have to offer is to help my clients design and ​develop Simplified learning solutions and E-Learning Materias.</p>
                 </div>
             </div>
@@ -215,45 +162,45 @@
     </section>
 
     <!-- What I Do Section -->
-    <section id="what-i-do" class="py-20 bg-accent text-light overflow-hidden">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">What I Do!</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white rounded-lg shadow-md flex flex-col items-center service-card">
-                    <div class="w-full p-4">
-                        <img src="img/elearning.png" alt="E-learning" class="w-full h-auto object-contain">
-                    </div>
-                    <div class="p-4 mt-auto">
-                        <a href="./e-learning" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 inline-block">Learn More</a>
-                    </div>
+<section id="what-i-do" class="py-20 bg-accent text-light overflow-hidden">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-12 text-center">What I Do!</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white rounded-lg shadow-md flex flex-col items-center service-card">
+                <div class="w-full p-4">
+                    <img src="img/elearning.png" alt="E-learning" class="w-full h-auto object-contain">
                 </div>
-                <div class="bg-white rounded-lg shadow-md flex flex-col items-center service-card">
-                    <div class="w-full p-4">
-                        <img src="img/instructorled.png" alt="Instructional-Led" class="w-full h-auto object-contain">
-                    </div>
-                    <div class="p-4 mt-auto">
-                        <a href="./instructional-led" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 inline-block">Learn More</a>
-                    </div>
+                <div class="p-4 mt-auto">
+                    <a href="./e-learning" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 inline-block">Learn More</a>
                 </div>
-                <div class="bg-white rounded-lg shadow-md flex flex-col items-center service-card">
-                    <div class="w-full p-4">
-                        <img src="img/jobaids.png" alt="Job-Aids Infographic" class="w-full h-auto object-contain">
-                    </div>
-                    <div class="p-4 mt-auto">
-                        <a href="./job-aid-infographic" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 inline-block">Learn More</a>
-                    </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md flex flex-col items-center service-card">
+                <div class="w-full p-4">
+                    <img src="img/instructorled.png" alt="Instructional-Led" class="w-full h-auto object-contain">
                 </div>
-                <div class="bg-white rounded-lg shadow-md flex flex-col items-center service-card">
-                    <div class="w-full p-4">
-                        <img src="img/scriptingandstoryboard.png" alt="Scripting & Storyboard" class="w-full h-auto object-contain">
-                    </div>
-                    <div class="p-4 mt-auto">
-                        <a href="./scripting-&-storyboard" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 inline-block">Learn More</a>
-                    </div>
+                <div class="p-4 mt-auto">
+                    <a href="./instructional-led" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 inline-block">Learn More</a>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md flex flex-col items-center service-card">
+                <div class="w-full p-4">
+                    <img src="img/jobaids.png" alt="Job-Aids Infographic" class="w-full h-auto object-contain">
+                </div>
+                <div class="p-4 mt-auto">
+                    <a href="./job-aid-infographic" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 inline-block">Learn More</a>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md flex flex-col items-center service-card">
+                <div class="w-full p-4">
+                    <img src="img/scriptingandstoryboard.png" alt="Scripting & Storyboard" class="w-full h-auto object-contain">
+                </div>
+                <div class="p-4 mt-auto">
+                    <a href="./scripting-&-storyboard" class="bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition duration-300 inline-block">Learn More</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Testimonial Section -->
     <section id="testimonials" class="py-12 sm:py-16 md:py-20 bg-light">
@@ -263,7 +210,7 @@
         </div>
     </section>
 
-    <<!-- Achievements Section -->
+    <!-- Achievements Section -->
     <section id="achievements" class="py-20 bg-accent overflow-hidden">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-12 text-center text-white">Achievements</h2>
@@ -309,6 +256,7 @@
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 overflow-hidden">
+        
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-8 text-center text-primary">Contact Me</h2>
             <div class="grid md:grid-cols-2 gap-8">
@@ -507,40 +455,92 @@
 
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            // Add smooth transition
-            mobileMenu.style.transition = 'all 0.3s ease-in-out';
         });
 
-        // Smooth scroll to about section
-        function scrollToAbout() {
-            const aboutSection = document.getElementById('about');
-            aboutSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        // Initialize Lucide icons
+        lucide.createIcons();
 
         // GSAP animations
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animate hero elements
-        gsap.from("#hero-title", { opacity: 0, y: 50, duration: 1, delay: 0.5 });
-        gsap.from("#hero-subtitle", { opacity: 0, y: 50, duration: 1, delay: 0.7 });
-        gsap.from("#hero-cta", { opacity: 0, y: 50, duration: 1, delay: 0.9 });
+        // Hero section animations
+        gsap.from("#hero-title", { opacity: 0, y: 20, duration: 1, delay: 0.5 });
+        gsap.from("#hero-subtitle", { opacity: 0, y: 20, duration: 1, delay: 0.7 });
+        gsap.from("#hero-cta", { opacity: 0, y: 20, duration: 1, delay: 0.9 });
 
-        // Animate about section
-        gsap.from(".about-text", {
-            scrollTrigger: {
-                trigger: "#about",
-                start: "top 80%",
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.2
+        // About section animations
+        gsap.utils.toArray(".about-text").forEach((text, i) => {
+            gsap.from(text, {
+                opacity: 0,
+                y: 20,
+                duration: 0.8,
+                delay: i * 0.2,
+                scrollTrigger: {
+                    trigger: text,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
         });
 
-        // Animate service cards
-        gsap.from(".service-card", {
-            scrollTrigger: {
-                trigger: "#what-i-do",
-                start: "top 80%",
-            
-<merged_code>
+        // Achievement badge animations
+        gsap.utils.toArray(".achievement-badge").forEach((badge, i) => {
+            gsap.from(badge, {
+                opacity: 0,
+                scale: 0.8,
+                duration: 0.5,
+                delay: i * 0.1,
+                scrollTrigger: {
+                    trigger: badge,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        // Initialize VanillaTilt for service cards
+        function initTilt() {
+            const isMobile = window.innerWidth <= 768;
+            VanillaTilt.init(document.querySelectorAll(".service-card"), {
+                max: isMobile ? 5 : 10,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.3,
+                scale: isMobile ? 1.02 : 1.03,
+                gyroscope: true,
+                gyroscopeMinAngleX: isMobile ? -5 : -10,
+                gyroscopeMaxAngleX: isMobile ? 5 : 10,
+                gyroscopeMinAngleY: isMobile ? -5 : -10,
+                gyroscopeMaxAngleY: isMobile ? 5 : 10
+            });
+        }
+
+        // Call initTilt on page load and window resize
+        window.addEventListener('load', initTilt);
+        window.addEventListener('resize', initTilt);
+
+
+        // Parallax effect
+        gsap.utils.toArray(".parallax").forEach((parallaxElement) => {
+            const speed = parallaxElement.dataset.speed;
+            gsap.to(parallaxElement, {
+                y: (i, target) => -ScrollTrigger.maxScroll(window) * speed,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: parallaxElement,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+
+        function scrollToAbout() {
+            const aboutSection = document.getElementById('about');
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
