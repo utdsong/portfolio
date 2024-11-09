@@ -96,18 +96,6 @@
             background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
         }
-        .animate-pulse {
-            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation-duration: 4s;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.05; }
-            50% { opacity: 0.1; }
-        }
-        #mobile-menu {
-            transition: all 0.3s ease-in-out;
-            transform-origin: top;
-        }
     </style>
 </head>
 <body class="min-h-screen bg-light text-dark">
@@ -150,14 +138,14 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[80vh] bg-[#4A5568] text-light overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section class="relative min-h-[80vh] bg-accent text-light overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
             <div class="absolute -inset-[10px] bg-primary/10">
                 <div class="absolute inset-0 bg-grid-white/10 bg-grid [mask-image:radial-gradient(white,transparent_85%)]"></div>
             </div>
         </div>
         <div class="relative z-10 container mx-auto px-4 py-10 flex items-center justify-center min-h-[80vh]">
-            <div class="flex flex-col items-center justify-center text-center max-w-3xl mx-auto">
+            <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
                 <div class="mb-8 relative">
                     <div class="absolute inset-0 animate-pulse bg-primary/20 rounded-full"></div>
                     <img 
@@ -204,10 +192,10 @@
                     </div>
                 </div>
                 <div class="md:w-2/3">
-                    <p class="text-lg mb-4 about-text text-gray-800 dark:text-gray-200">
+                    <p class="text-lg mb-4 about-text text-black">
                         I'm an experienced instructional design and e-learning specialist with a passion to bridge the learning experience gaps. With over 12 years in the educational field training to the field of instructional design and online development, I specialize in conducting gaps analysis, storyboarding bridging-gaps solution, and rapid-prototyping the E-learning experiences.
                     </p>
-                    <p class="text-lg mb-4 about-text text-gray-800 dark:text-gray-200">
+                    <p class="text-lg mb-4 about-text text-black">
                         The ultimate package I have to offer is to help my clients design and ​develop Simplified learning solutions and E-Learning Materias.</p>
                 </div>
             </div>
@@ -263,7 +251,7 @@
         </div>
     </section>
 
-    <<!-- Achievements Section -->
+    <!-- Achievements Section -->
     <section id="achievements" class="py-20 bg-accent overflow-hidden">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-12 text-center text-white">Achievements</h2>
@@ -507,8 +495,6 @@
 
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            // Add smooth transition
-            mobileMenu.style.transition = 'all 0.3s ease-in-out';
         });
 
         // Smooth scroll to about section
@@ -531,7 +517,7 @@
                 trigger: "#about",
                 start: "top 80%",
             },
-            opacity: 0,
+            opacity: 100,
             y: 50,
             duration: 1,
             stagger: 0.2
@@ -542,5 +528,35 @@
             scrollTrigger: {
                 trigger: "#what-i-do",
                 start: "top 80%",
-            
-<merged_code>
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            stagger: 0.2
+        });
+
+        // Animate achievement badges
+        gsap.from(".achievement-badge", {
+            scrollTrigger: {
+                trigger: "#achievements",
+                start: "top 80%",
+            },
+            opacity: 0,
+            scale: 0.8,
+            duration: 1,
+            stagger: 0.2
+        });
+
+        // Initialize Vanilla Tilt for achievement badges
+        VanillaTilt.init(document.querySelectorAll(".achievement-badge"), {
+            max: 25,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5,
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
