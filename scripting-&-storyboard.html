@@ -155,46 +155,41 @@
         </div>
     </header>
 
-    <!-- Navigation -->
-    <nav class="bg-light shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <a href="./" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
-                    Home
-                </a>
-                <div class="hidden md:flex space-x-4 items-center">
-                    <a href="http://utdamsong.com/#about" class="text-dark hover:text-primary transition duration-300">About</a>
-                    <a href="http://utdamsong.com/#what-i-do" class="text-dark hover:text-primary transition duration-300">Portfolio</a>
-                    <a href="http://utdamsong.com/#contact" class="text-dark hover:text-primary transition duration-300">Contact</a>
-                    <a href="http://utdamsong.com/#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
-                        Hire Me
-                    </a>
-                </div>
-                <button 
-                    class="md:hidden text-dark"
-                    id="menu-toggle"
-                >
-                    <i data-lucide="menu"></i>
-                </button>
-            </div>
-            <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
-                <a href="http://utdamsong.com/#about" class="block text-dark hover:text-primary transition duration-300">About</a>
-                <a href="http://utdamsong.com/#what-i-do" class="block text-dark hover:text-primary transition duration-300">Portfolio</a>
-                <a href="http://utdamsong.com/#contact" class="block text-dark hover:text-primary transition duration-300">Contact</a>
-                <a href="http://utdamsong.com/#contact" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
+   <!-- Updated Navigation -->
+   <nav class="bg-light shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+            <a href="./" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                Home
+            </a>
+            <div class="hidden md:flex space-x-4 items-center">
+                <a href="http://utdamsong.com/#about" class="text-dark hover:text-primary transition duration-300">About</a>
+                <a href="http://utdamsong.com/#what-i-do" class="text-dark hover:text-primary transition duration-300">Portfolio</a>
+                <a href="http://utdamsong.com/#contact" class="text-dark hover:text-primary transition duration-300">Contact</a>
+                <a href="http://utdamsong.com/#contact" class="bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
                     Hire Me
                 </a>
             </div>
+            <button 
+                class="md:hidden text-dark"
+                id="menu-toggle"
+                aria-label="Toggle menu"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
-    </nav>
-                <button 
-                    class="md:hidden text-white"
-                    id="menu-toggle"
-                    aria-label="Toggle menu"
-                >
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>         
-    </nav>
+        <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
+            <a href="http://utdamsong.com/#about" class="block text-dark hover:text-primary transition duration-300">About</a>
+            <a href="http://utdamsong.com/#what-i-do" class="block text-dark hover:text-primary transition duration-300">Portfolio</a>
+            <a href="http://utdamsong.com/#contact" class="block text-dark hover:text-primary transition duration-300">Contact</a>
+            <a href="http://utdamsong.com/#contact" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
+                Hire Me
+            </a>
+        </div>
+    </div>
+</nav>
 
     <main id="scripting-content" class="container mx-auto px-4 py-8"></main>
 
