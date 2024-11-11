@@ -115,7 +115,7 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <a href="./" class="text-xl md:text-2xl font-bold text-dark">
-                    Sereyutdam Song
+                    Home
                 </a>
                 <div class="hidden md:flex space-x-4 items-center">
                     <a href="#about" class="text-dark hover:text-primary transition duration-300">About</a>
@@ -142,24 +142,6 @@
             </div>
         </div>
     </nav>
-                <button 
-                    class="md:hidden text-white"
-                    id="menu-toggle"
-                    aria-label="Toggle menu"
-                >
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-            </div>
-            <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
-                <a href="https://utdsong.github.io/utdam/portfolio.html#about" class="block text-white hover:text-primary">About</a>
-                <a href="https://utdsong.github.io/utdam/portfolio.html#what-i-do" class="block text-white hover:text-primary">Portfolio</a>
-                <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="block text-white hover:text-primary">Contact</a>
-                <a href="https://utdsong.github.io/utdam/portfolio.html#contact" class="block bg-secondary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300 text-center">
-                    Hire Me
-                </a>
-            </div>
-        </div>
-    </nav>
 
     <main id="e-learning-projects" class="container mx-auto px-4 py-8"></main>
 
@@ -178,6 +160,25 @@
 
     <script type="text/babel">
         const projects = [
+            {
+                title: "Lectora 21",
+                client: "IDOL Academy (US Vocational Training School)",
+                tools: "Lectora, Camtasia, and Canva",
+                duration: "4 months",
+                summary: "This is a seven-videos basic training specially designed to train Instructional designers and E-learning developers the basic of developing interactive E-Learning materials and protoype starting from navigating basic features to implementing advanced functions (Interactivity, tracking user input, and publishing their first E-Learning course on the internet. layers and functions in designing their interactive courses.",
+                challenge: "The E-learning design need to be interactive and with multimedia incorporation. The E-learning comes with 3 types of Learning: View Mode where users see interactive audio and mouse cursor showing how to do specific things, Try Mode where learners get to practices what they have watched and with the assistance of instructional hints when hovering over the hotspot areas, and finally Test Mode where learners get to interactively click on hotspots to excute the interaction and apply functions inside the E-learning design. ",
+                result: "One of IDOL evaluators praised the quality of e-learning design and its effects on using the interactive modes to scaffold the learning experiences. The E-learning has also been tested with few instructional designers and the user experience responses yield postive feedback regarding its interactivity.",
+                image: "img/lectora.png?height=300&width=400",
+                videos: [
+                    { id: '1', title: 'Installing Lectora', src: 'https://www.youtube.com/watch?v=1ySuBymCyGU', thumbnail: 'https://img.youtube.com/vi/1ySuBymCyGU/0.jpg' },
+                    { id: '2', title: 'Creating a Project', src: 'https://www.youtube.com/watch?v=F67mlnrshq8', thumbnail: 'https://img.youtube.com/vi/F67mlnrshq8/0.jpg' },
+                    { id: '3', title: 'Setting Up A Project', src: 'https://www.youtube.com/watch?v=CNuM-h5Qtj0', thumbnail: 'https://img.youtube.com/vi/CNuM-h5Qtj0/0.jpg' },
+                    { id: '4', title: 'Adding and Formatting Text', src: 'https://www.youtube.com/watch?v=uJHBw5mDfLQ', thumbnail: 'https://img.youtube.com/vi/uJHBw5mDfLQ/0.jpg' },
+                    { id: '5', title: 'Installing Font', src: 'https://www.youtube.com/watch?v=rtMa30NQnwo', thumbnail: 'https://img.youtube.com/vi/rtMa30NQnwo/0.jpg' },
+                    { id: '6', title: 'Text Customization', src: 'https://www.youtube.com/watch?v=hmFBpQhxrxA', thumbnail: 'https://img.youtube.com/vi/hmFBpQhxrxA/0.jpg' },
+                    { id: '7', title: 'Working with tables', src: 'https://www.youtube.com/watch?v=apNtO0xxNQI', thumbnail: 'https://img.youtube.com/vi/apNtO0xxNQI/0.jpg' },
+                ]
+            },
             {
                 title: "Geography Matter",
                 client: "E2STEM Education",
@@ -200,25 +201,6 @@
                 challenge: "The Math Digital Learning Content required differentiated learning materials with activities carefully structured in progressive difficulty levels. To effectively design and teach mathematics concepts, we developed six new learning interaction to ensure the learning experiences are interactive unlike the traditional EdTech Application.",
                 result: "Initial pilot testing at a partner school yielded positive feedback, with students demonstrating strong engagement in the game-based learning approach. The Web application was successfully launched and deployed both online and offline on the Raspberry Pi to ensure even the learners in the unreached area can access our digital math content.",
                 image: "img/gncdashboard.png?height=300&width=400"
-            },
-            {
-                title: "Lectora 21",
-                client: "IDOL Academy (US Vocational Training School)",
-                tools: "Lectora, Camtasia, and Canva",
-                duration: "4 months",
-                summary: "This is a seven-videos basic training specially designed to train Instructional designers and E-learning developers the basic of developing interactive E-Learning materials and protoype starting from navigating basic features to implementing advanced functions (Interactivity, tracking user input, and publishing their first E-Learning course on the internet. layers and functions in designing their interactive courses.",
-                challenge: "The E-learning design need to be interactive and with multimedia incorporation. The E-learning comes with 3 types of Learning: View Mode where users see interactive audio and mouse cursor showing how to do specific things, Try Mode where learners get to practices what they have watched and with the assistance of instructional hints when hovering over the hotspot areas, and finally Test Mode where learners get to interactively click on hotspots to excute the interaction and apply functions inside the E-learning design. ",
-                result: "One of IDOL evaluators praised the quality of e-learning design and its effects on using the interactive modes to scaffold the learning experiences. The E-learning has also been tested with few instructional designers and the user experience responses yield postive feedback regarding its interactivity.",
-                image: "img/lectora.png?height=300&width=400",
-                videos: [
-                    { id: '1', title: 'Installing Lectora', src: 'https://www.youtube.com/watch?v=1ySuBymCyGU', thumbnail: 'https://img.youtube.com/vi/1ySuBymCyGU/0.jpg' },
-                    { id: '2', title: 'Creating a Project', src: 'https://www.youtube.com/watch?v=F67mlnrshq8', thumbnail: 'https://img.youtube.com/vi/F67mlnrshq8/0.jpg' },
-                    { id: '3', title: 'Setting Up A Project', src: 'https://www.youtube.com/watch?v=CNuM-h5Qtj0', thumbnail: 'https://img.youtube.com/vi/CNuM-h5Qtj0/0.jpg' },
-                    { id: '4', title: 'Adding and Formatting Text', src: 'https://www.youtube.com/watch?v=uJHBw5mDfLQ', thumbnail: 'https://img.youtube.com/vi/uJHBw5mDfLQ/0.jpg' },
-                    { id: '5', title: 'Installing Font', src: 'https://www.youtube.com/watch?v=rtMa30NQnwo', thumbnail: 'https://img.youtube.com/vi/rtMa30NQnwo/0.jpg' },
-                    { id: '6', title: 'Text Customization', src: 'https://www.youtube.com/watch?v=hmFBpQhxrxA', thumbnail: 'https://img.youtube.com/vi/hmFBpQhxrxA/0.jpg' },
-                    { id: '7', title: 'Working with tables', src: 'https://www.youtube.com/watch?v=apNtO0xxNQI', thumbnail: 'https://img.youtube.com/vi/apNtO0xxNQI/0.jpg' },
-                ]
             }
         ];
 
@@ -269,7 +251,7 @@
                                             </div>
                                             <div class="flex-grow">
                                                 <h4 class="text-sm font-medium text-white">${video.title}</h4>
-                                            </div>
+                                </div>
                                         </div>
                                     `).join('')}
                                 </div>
